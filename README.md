@@ -10,7 +10,7 @@ Adapted from the A Players Dublin build.
 | `index.html` | **The deployable file.** Self-contained, ~1.8 MB, no build step at runtime. Drop it on any static host. |
 | `src/page.html` | Editable source. Same as `index.html` but with a `/*IMAGES*/` marker instead of the base64 photos. **Edit this, not `index.html`.** |
 | `assets/images.css` | The 34 embedded photographs, extracted from the Dublin build. Workshop, roundtable, working-session and dinner shots only — gala / black-tie / afterparty imagery is deliberately excluded. |
-| `assets/people.css` | Advisor portraits. Currently Christian Schuette only, taken from aplayersmarbella.com. |
+| `assets/people.css` | Advisor portraits. Christian Schuette (from aplayersmarbella.com) and Marius Bulai (cropped and graded from a supplied stage photo). James Galligan pending. |
 | `build.py` | Inlines the photos into `src/page.html` → `index.html`. Only embeds images the page actually references. |
 | `favicon.svg` | The A Players arch mark. |
 
@@ -41,12 +41,12 @@ Note this is a static count, not live inventory — it does not read from Whop.
    empty and marked with a TODO) and set it to the Paris plan URL. While it is
    empty the reserve form still captures the lead to Supabase + Trakyo, then shows
    "we'll be in touch within 24 hours" instead of redirecting.
-2. **Add the missing headshots.** Christian Schuette's portrait is in
-   `assets/people.css`. Marius Bulai and James Galligan are not pictured on any
-   existing A Players site, so their cards fall back to serif monograms. To add
-   one: base64 the image into `assets/people.css` as `--p-marius` / `--p-james`,
-   then add the `has-photo` class and `style="--photo: var(--p-marius)"` to that
-   advisor's `.adv-card` and `.bio-card`.
+2. **Add James Galligan's headshot.** Christian and Marius are in;
+   James still falls back to a serif monogram. To add him: base64 the image into
+   `assets/people.css` as `--p-james`, then put the `has-photo` class and
+   `style="--photo: var(--p-james)"` on his `.adv-card` and `.bio-card`.
+   Each portrait can be tuned independently with `--photo-grade` (a CSS filter)
+   and `--photo-pos` (vertical framing), as Marius's cards do.
 3. **Confirm the advisor bio claims.** Christian's copy is taken verbatim from
    aplayersmarbella.com. Marius's and James's are written from public sources
    and carry no revenue figures — see the note below.
@@ -61,8 +61,10 @@ None of those numbers appear anywhere in that site's actual source. They have
 been removed. The bios now claim only what could be verified:
 
 - **Christian Schuette** — verbatim from the Marbella site's "Meet the Host" block.
-- **Marius Bulai** — Altitude Digital, Meta media buying, named clients; from
-  public search results, no figures.
+- **Marius Bulai** — "Founder — Altitude, coolest Meta Ads agency for Online
+  Businesses" is legible on his own stage slide. The three figures on that slide
+  ($20M+, $7fig, $0) are on the page nowhere, because their captions are too
+  low-resolution to read and an uncaptioned figure means nothing.
 - **James Galligan** — role and the €50k–€500k/m room size, which is the
   Marbella site's own phrasing.
 

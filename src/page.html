@@ -112,8 +112,8 @@ fbq('init','747158551764136');fbq('track','PageView');
   .adv-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0) 58%, rgba(8,8,8,.5) 100%); opacity: 0; transition: opacity .3s ease; }
   .adv-card.has-photo::after { opacity: 1; }
   .adv-card.has-photo::before, .bio-card.has-photo::before { background: none; }
-  .adv-card.has-photo, .bio-card.has-photo { filter: brightness(1.24) contrast(1.04) saturate(.95); }
-  .adv-card.has-photo { background-position: center 14%; }
+  .adv-card.has-photo, .bio-card.has-photo { filter: var(--photo-grade, brightness(1.24) contrast(1.04) saturate(.95)); }
+  .adv-card.has-photo { background-position: center var(--photo-pos, 14%); }
   .adv-mark { font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 5.6vw, 78px); line-height: 1; letter-spacing: .02em; color: var(--steel); opacity: .9; }
   .adv-card.has-photo .adv-mark { display: none; }
   .adv-rule { position: absolute; left: 50%; bottom: 18%; width: 26px; height: 1px; transform: translateX(-50%); background: rgba(182,190,198,.45); }
@@ -200,7 +200,7 @@ fbq('init','747158551764136');fbq('track','PageView');
   .bio { display: grid; gap: 16px; align-content: start; }
   .bio-card { position: relative; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; isolation: isolate; display: grid; place-items: center; background-color: #121211; background-image: var(--photo, none); background-size: cover; background-position: center top; box-shadow: inset 0 0 0 1px var(--line); }
   .bio-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 90% at 50% 14%, #21211F 0%, #101010 72%); }
-  .bio-card.has-photo { background-position: center 10%; }
+  .bio-card.has-photo { background-position: center var(--photo-pos, 10%); }
   .bio-card.has-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0) 62%, rgba(8,8,8,.42) 100%); }
   .bio-mark { font-family: var(--serif); font-weight: 300; font-size: clamp(52px, 6vw, 86px); line-height: 1; color: var(--steel); opacity: .9; }
   .bio-card.has-photo .bio-mark { display: none; }
@@ -473,7 +473,7 @@ fbq('init','747158551764136');fbq('track','PageView');
           <span class="adv-meta"><b>Christian Schuette</b><span class="mono">Branding</span></span>
         </a>
         <a class="adv" href="#advisors">
-          <span class="adv-card" role="img" aria-label="Marius Bulai"><span class="adv-mark">MB</span><span class="adv-rule" aria-hidden="true"></span></span>
+          <span class="adv-card has-photo" style="--photo: var(--p-marius); --photo-grade: contrast(1.02); --photo-pos: 6%" role="img" aria-label="Marius Bulai"><span class="adv-mark">MB</span><span class="adv-rule" aria-hidden="true"></span></span>
           <span class="adv-meta"><b>Marius Bulai</b><span class="mono">Ads Growth</span></span>
         </a>
         <a class="adv" href="#advisors">
@@ -650,12 +650,12 @@ fbq('init','747158551764136');fbq('track','PageView');
           </ul>
         </article>
         <article class="bio">
-          <div class="bio-card" role="img" aria-label="Marius Bulai"><span class="bio-mark">MB</span></div>
+          <div class="bio-card has-photo" style="--photo: var(--p-marius); --photo-grade: contrast(1.02); --photo-pos: 4%" role="img" aria-label="Marius Bulai"><span class="bio-mark">MB</span></div>
           <div class="bio-head"><b>Marius Bulai</b><span class="mono">Ads Growth</span></div>
-          <p>Media buyer and founder of Altitude Digital, specialising in paid acquisition and the tracking underneath it. Has bought media for Robert Kiyosaki, Pace Morby and Ryan Pineda.</p>
+          <p>Founder of Altitude, a Meta ads agency for online businesses. A media buyer first, with the tracking and attribution underneath it — he has bought media for Robert Kiyosaki, Pace Morby and Ryan Pineda.</p>
           <ul class="bio-facts">
-            <li><svg aria-hidden="true"><use href="#check"/></svg>Founder of Altitude Digital</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>Meta media buying at scale</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Founder of Altitude</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Meta ads agency for online businesses</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Tracking and attribution specialist</li>
           </ul>
         </article>
