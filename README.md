@@ -35,6 +35,31 @@ every CTA becomes "Join the waitlist".
 
 Note this is a static count, not live inventory — it does not read from Whop.
 
+## The reserve form
+
+Collects first name, last name, email, industry, average monthly revenue,
+team size, Instagram handle and phone. Everything except Instagram is
+required. Revenue and team size are dropdowns so the answers stay
+comparable; industry is free text.
+
+The Instagram field accepts `@handle`, `handle`, or a full profile URL and
+normalises all three to the bare handle before sending.
+
+Where the answers go:
+
+| Destination | Carries the new fields? |
+|---|---|
+| `submit-lead` edge function (`payload`) | yes |
+| Trakyo webhook | yes |
+| n8n touchpoint webhook (`profile` object) | yes |
+| n8n `gt-event-capture` webhook | yes |
+| Supabase `leads` table (direct REST insert) | **no** - still name/email/phone only |
+
+The direct `leads` insert is deliberately left alone: posting columns that
+do not exist on that table would fail the request. If you want industry,
+revenue, team size and Instagram in `leads` directly, add those columns
+first, then extend that one `JSON.stringify` call.
+
 ## Before launch
 
 1. **Check the Whop plan price.** `CFG.checkout` points at

@@ -323,7 +323,10 @@ fbq('init','747158551764136');fbq('track','PageView');
   .co-field { display: grid; gap: 6px; }
   .co-field .mono { color: var(--on-ink-mute); font-size: 10.5px; }
   .co-field input, .co-field select, .co-phone select { width: 100%; font: inherit; font-size: 16px; color: var(--on-ink); background: var(--black); border: 0; border-radius: 12px; padding: 12px 14px; box-shadow: inset 0 0 0 1px var(--line); }
-  .co-field select { appearance: none; -webkit-appearance: none; }
+  .co-field select { appearance: none; -webkit-appearance: none; padding-right: 36px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 6 L8 10.5 L12.5 6' fill='none' stroke='%239C9C97' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; background-size: 13px; }
+  .co-field select:has(option[value=""]:checked) { color: var(--on-ink-mute); }
+  .co-field select option { color: var(--on-ink); background: var(--black); }
   .co-field input:focus, .co-field select:focus, .co-phone select:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--steel); }
   .co-phone { display: grid; grid-template-columns: 112px 1fr; gap: 8px; }
   .co-phone select { padding-inline: 10px; appearance: none; -webkit-appearance: none; }
@@ -927,6 +930,35 @@ fbq('init','747158551764136');fbq('track','PageView');
         <label class="co-field"><span class="mono">Last name</span><input id="co-last" name="lastName" autocomplete="family-name" maxlength="100" required></label>
       </div>
       <label class="co-field"><span class="mono">Email</span><input id="co-email" name="email" type="email" autocomplete="email" maxlength="255" required></label>
+      <div class="co-row">
+        <label class="co-field"><span class="mono">Industry</span><input id="co-industry" name="industry" maxlength="80" placeholder="Agency, ecommerce, SaaS…" required></label>
+        <label class="co-field"><span class="mono">Instagram</span><input id="co-instagram" name="instagram" maxlength="60" placeholder="@handle" autocapitalize="off" autocorrect="off"></label>
+      </div>
+      <div class="co-row">
+        <label class="co-field"><span class="mono">Avg monthly revenue</span>
+          <select id="co-revenue" name="revenue" required>
+            <option value="" disabled selected>Select…</option>
+            <option>Under €10k</option>
+            <option>€10k–€25k</option>
+            <option>€25k–€50k</option>
+            <option>€50k–€100k</option>
+            <option>€100k–€250k</option>
+            <option>€250k–€500k</option>
+            <option>€500k+</option>
+          </select>
+        </label>
+        <label class="co-field"><span class="mono">Team size</span>
+          <select id="co-team" name="teamSize" required>
+            <option value="" disabled selected>Select…</option>
+            <option>Just me</option>
+            <option>2–5</option>
+            <option>6–10</option>
+            <option>11–25</option>
+            <option>26–50</option>
+            <option>50+</option>
+          </select>
+        </label>
+      </div>
       <div class="co-field"><label class="mono" for="co-phone">Phone</label>
         <div class="co-phone"><select id="co-dial" name="dial" aria-label="Country code"><option value="+33" selected>FR +33</option><option value="+353">IE +353</option><option value="+44">GB +44</option><option value="+1">US +1</option><option value="+49">DE +49</option><option value="+31">NL +31</option><option value="+32">BE +32</option><option value="+34">ES +34</option><option value="+351">PT +351</option><option value="+39">IT +39</option><option value="+41">CH +41</option><option value="+43">AT +43</option><option value="+46">SE +46</option><option value="+45">DK +45</option><option value="+47">NO +47</option><option value="+358">FI +358</option><option value="+48">PL +48</option><option value="+40">RO +40</option><option value="+971">AE +971</option><option value="+27">ZA +27</option><option value="+61">AU +61</option></select><input id="co-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="6 12 34 56 78" maxlength="20" required></div>
       </div>
@@ -1144,6 +1176,8 @@ fbq('init','747158551764136');fbq('track','PageView');
         var body = {
           event_type: type, firstName: nn(d.firstName), lastName: nn(d.lastName), email: email, phone: nn(d.phone),
           purchase_city: CFG.city, purchase_tier_name: CFG.tierName, trakyo_id: nn(tid),
+          industry: nn((d.profile || {}).industry), monthly_revenue: nn((d.profile || {}).monthly_revenue),
+          team_size: nn((d.profile || {}).team_size), instagram: (d.profile || {}).instagram || null,
           utm_source: nn(u.utm_source), utm_medium: nn(u.utm_medium), utm_campaign: nn(u.utm_campaign),
           utm_content: nn(u.utm_content), utm_term: nn(u.utm_term),
           page_url: location.href, submitted_at: new Date().toISOString()
@@ -1199,20 +1233,26 @@ fbq('init','747158551764136');fbq('track','PageView');
       err.hidden = true;
       if (form.company_website.value.trim() !== "") return;
       var first = form.firstName.value.trim(), last = form.lastName.value.trim(), email = form.email.value.trim();
+      var industry = form.industry.value.trim(), revenue = form.revenue.value, teamSize = form.teamSize.value;
+      var instagram = form.instagram.value.trim().replace(/^@+/, "").replace(/^(https?:\/\/)?(www\.)?instagram\.com\//i, "").replace(/\/+$/, "");
       if (!first) return fail("First name is required.");
       if (!last) return fail("Last name is required.");
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fail("Please enter a valid email address.");
+      if (!industry) return fail("Please tell us your industry.");
+      if (!revenue) return fail("Please choose your average monthly revenue.");
+      if (!teamSize) return fail("Please choose your team size.");
       var dial = form.dial.value, p = phoneProblem(form.phone.value);
       if (p) return fail(p);
       if (Date.now() - openedAt < 3000) return fail("One moment, then press continue again.");
       var phone = dial + form.phone.value.replace(/[^\d]/g, "").replace(/^0+/, "");
       var name = (first + " " + last).trim(), tid = trakyoId(), u = utm();
       busy = true; submit.disabled = true;
-      fireEvent("reserve", { firstName: first, lastName: last, email: email, phone: phone });
+      var profile = { industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null };
+      fireEvent("reserve", { firstName: first, lastName: last, email: email, phone: phone, profile: profile });
 
       track("track", "InitiateCheckout", { content_name: CFG.tierName, content_type: "product", currency: "EUR", value: window.__APC_PRICE || 4000 });
       track("track", "Lead");
-      touchpoint({ touchpoint_type: "form_lead", name: name, email: email, phone: phone, action: "checkout_form_submit", entry_type: CFG.tierName });
+      touchpoint({ touchpoint_type: "form_lead", name: name, email: email, phone: phone, action: "checkout_form_submit", entry_type: CFG.tierName, profile: profile });
       submit.textContent = CFG.checkout ? "Taking you to checkout…" : "Sending…";
       try {
         await capped(fetch(CFG.supabase + "/rest/v1/leads", {
@@ -1222,7 +1262,8 @@ fbq('init','747158551764136');fbq('track','PageView');
         }), 4000);
         await capped(fetch(CFG.trakyo, {
           method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email, name: name, phone: phone, trakyo_id: tid, form_name: "Paris Mastermind", city: CFG.city })
+          body: JSON.stringify({ email: email, name: name, phone: phone, trakyo_id: tid, form_name: "Paris Mastermind", city: CFG.city,
+            industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null })
         }));
         await capped(fetch(CFG.supabase + "/functions/v1/submit-lead", {
           method: "POST", keepalive: true,
@@ -1230,10 +1271,11 @@ fbq('init','747158551764136');fbq('track','PageView');
           body: JSON.stringify({ form: "live_ticket", payload: {
             firstName: first, lastName: last, email: email, phone: "+" + phone.replace(/[^\d]/g, ""), trakyo_id: tid,
             submitted_at: new Date().toISOString(), utm_source: u.utm_source, utm_medium: u.utm_medium, utm_campaign: u.utm_campaign,
-            utm_content: u.utm_content, utm_term: u.utm_term, purchase_city: CFG.city, purchase_tier_name: CFG.tierName
+            utm_content: u.utm_content, utm_term: u.utm_term, purchase_city: CFG.city, purchase_tier_name: CFG.tierName,
+            industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null
           } })
         }));
-        touchpoint({ touchpoint_type: "form_submit", name: name, email: email, phone: phone, action: CFG.checkout ? "whop_redirect" : "await_payment_link", entry_type: CFG.tierName });
+        touchpoint({ touchpoint_type: "form_submit", name: name, email: email, phone: phone, action: CFG.checkout ? "whop_redirect" : "await_payment_link", entry_type: CFG.tierName, profile: profile });
 
         if (CFG.checkout) {
           var q = new URLSearchParams();
