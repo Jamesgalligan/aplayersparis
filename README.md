@@ -75,6 +75,9 @@ aplayersdublin.com. Replace any of this with your own confirmed numbers.
 ## Differences from Dublin
 
 - Steel (`--steel: #B6BEC6`) replaces the pink accent throughout.
+- An Eiffel base arch, drawn as inline SVG line work, sits behind the city name
+  in the hero (`.arc`). It deliberately echoes the arch in the A Players mark.
+  It is pure vector, adds no weight, and respects prefers-reduced-motion.
 - Speaker-led hero: three advisor cards above the city, no iOS smart-stack carousel.
 - One ticket tier (€3,000, 15 seats) instead of GA / VIP / VVIP.
 - All gala, black-tie, awards and afterparty content and imagery removed.

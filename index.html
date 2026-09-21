@@ -97,7 +97,17 @@ fbq('init','747158551764136');fbq('track','PageView');
   .live { display: inline-flex; align-items: center; gap: 12px; font-family: var(--serif); font-style: italic; font-size: 19px; color: rgba(242,242,239,.88); }
   .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 0 rgba(52,199,89,.5); animation: pulse 2.4s ease-out infinite; }
   @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(52,199,89,.55); } 70% { box-shadow: 0 0 0 9px rgba(52,199,89,0); } 100% { box-shadow: 0 0 0 0 rgba(52,199,89,0); } }
-  .hero-city { display: grid; justify-items: center; margin-top: clamp(26px, 3.2vw, 38px); }
+  .hero-city { position: relative; display: grid; justify-items: center; margin-top: clamp(26px, 3.2vw, 38px); }
+  /* The Eiffel base arch, drawn as line work behind the city name. It echoes
+     the arch in the A Players mark, so Paris reads as brand, not clip-art. */
+  .arc { position: absolute; z-index: -1; left: 50%; bottom: -20%; translate: -50% 0; width: min(88vw, 600px); height: auto; color: var(--steel); opacity: .3; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 84%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 84%, transparent 100%);
+    animation: arc-in 1.6s cubic-bezier(.3,.7,.3,1) .35s both; }
+  .arc path, .arc line { vector-effect: non-scaling-stroke; }
+  @keyframes arc-in { from { opacity: 0; transform: translateY(14px) scale(.985); } }
+  @media (max-width: 560px) { .arc { width: 116vw; opacity: .28; bottom: -16%; } }
+  @media (prefers-reduced-motion: reduce) { .arc { animation: none; } }
   .city { font-family: var(--serif); font-weight: 300; font-size: clamp(58px, 8.4vw, 116px); line-height: .84; letter-spacing: -.025em; margin: 12px 0 0; color: var(--on-ink); }
 
   /* ---------- hero advisor cards ---------- */
@@ -483,6 +493,13 @@ fbq('init','747158551764136');fbq('track','PageView');
       </div>
 
       <div class="hero-city">
+        <svg class="arc" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <path d="M10 320C62 190 136 110 172 0"/>
+          <path d="M390 320c-52-130-126-210-162-320"/>
+          <path d="M74 320c26-104 72-154 126-154s100 50 126 154"/>
+          <path d="M46 166h308"/>
+          <path d="M150 58h100"/>
+        </svg>
         <p class="live"><span class="live-dot" aria-hidden="true"></span>October 23–25, 2026 · Live</p>
         <p class="city">Paris</p>
       </div>
