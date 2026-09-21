@@ -748,7 +748,7 @@ fbq('init','747158551764136');fbq('track','PageView');
           </div>
           <div class="tier-price"><b data-price>€4,000</b><span data-price-note>for the full weekend</span></div>
           <p class="tier-step" data-step-note><b>First 10 seats at €4,000.</b> The price rises to €5,000 for the remaining five.</p>
-          <p class="tier-member">Members receive 20% off · <b data-member-price>€3,200</b></p>
+          <p class="tier-member">Members receive <span data-member-pct>25%</span> off · <b data-member-price>€3,000</b></p>
           <div class="tier-meter"><div class="meter"><i data-meter style="width:0%"></i></div><span class="mono" data-seats-line>15 seats · open now</span></div>
           <ul>
             <li><svg aria-hidden="true"><use href="#check"/></svg>All three workshop days — AI, ads and branding</li>
@@ -872,7 +872,7 @@ fbq('init','747158551764136');fbq('track','PageView');
         </details>
         <details>
           <summary>Is there a members discount?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>Yes. A Players Club members take 20% off whichever price is live, so €4,000 becomes €3,200 while the early seats last. Use your member code at checkout.</p>
+          <p>Yes. A Players Club members take <span data-member-pct>25%</span> off whichever price is live, so <span data-price>€4,000</span> becomes <span data-member-price>€3,000</span> while the early seats last. Use your member code at checkout.</p>
         </details>
         <details>
           <summary>Why does the price go up?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
@@ -999,7 +999,8 @@ fbq('init','747158551764136');fbq('track','PageView');
       sold: 0,          // <- seats taken so far
       earlyCount: 10,   // how many go at the early price
       earlyPrice: 4000,
-      fullPrice: 5000
+      fullPrice: 5000,
+      memberOff: 0.25   // A Players Club member discount
     };
 
     var sold = Math.max(0, Math.min(PRICING.seats, PRICING.sold));
@@ -1053,7 +1054,8 @@ fbq('init','747158551764136');fbq('track','PageView');
       });
     }
 
-    set("[data-member-price]", eur(Math.round(price * 0.8)));
+    set("[data-member-pct]", Math.round(PRICING.memberOff * 100) + "%");
+    set("[data-member-price]", eur(Math.round(price * (1 - PRICING.memberOff))));
 
     window.__APC_PRICE = price;
   })();

@@ -29,10 +29,13 @@ seat count on the page:
 var PRICING = { seats: 15, sold: 0, earlyCount: 10, earlyPrice: 4000, fullPrice: 5000 };
 ```
 
-The member price shown in the ticket card is derived (`price x 0.8`), so it
-follows the step automatically: EUR 3,200 while early seats last, EUR 4,000
-after. **Whop does not know about this discount** - it needs a 20% promo code
-set up on the plan for members to actually redeem it.
+`memberOff` in the same block is the A Players Club member discount (0.25).
+Both the percentage and the amount shown in the capsule and the FAQ derive
+from it, so changing that one number updates every mention and every figure.
+At 25% the member price is EUR 3,000 while early seats last, EUR 3,750 after.
+
+**Whop does not know about this discount** - it needs a 25% promo code set up
+on the plan before members can actually redeem it.
 
 Update `sold` as seats are taken and redeploy. The first 10 seats show €4,000;
 from the 10th sale onward the page flips to €5,000 on its own. At `sold: 15`
