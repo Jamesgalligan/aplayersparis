@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A Players Paris — social</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Roboto+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../assets/images.css">
+<link rel="stylesheet" href="../assets/people.css">
+<style>
+  :root {
+    --black: #080808;
+    --ink: #0D0D0D;
+    --card: #141414;
+    --line: #262624;
+    --on-ink: #F2F2EF;
+    --on-ink-mute: #9C9C97;
+    --concrete: #ECEBE7;
+    --joint: #D3D2CD;
+    --graphite: #3B3B39;
+    --steel: #B6BEC6;
+    --steel-deep: #8C97A2;
+    --amber: #E09A4E;
+    --serif: "Cormorant Garamond", Garamond, "Times New Roman", serif;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: "Roboto Mono", ui-monospace, Menlo, monospace;
+    --tex: none;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #202020; font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+  /* Each slide is exactly one Instagram 4:5 frame. */
+  .slide { position: relative; width: 1080px; height: 1350px; overflow: hidden; isolation: isolate;
+           display: grid; padding: 92px 84px; color: var(--on-ink); background: var(--ink); }
+  .dark { background: radial-gradient(120% 78% at 50% 0%, #181818 0%, #080808 66%); }
+  .dark::before { content: ""; position: absolute; inset: 0; z-index: -2;
+    background-image: radial-gradient(circle, rgba(242,242,239,.14) 0 1.6px, transparent 2.2px),
+                      linear-gradient(to right, rgba(242,242,239,.05) 0 1px, transparent 1px);
+    background-size: 150px 150px, 300px 100%; background-position: 75px 40px, 0 0;
+    -webkit-mask-image: radial-gradient(78% 62% at 50% 46%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(78% 62% at 50% 46%, #000 0%, transparent 100%); }
+  .concrete { background-color: var(--concrete); background-image: var(--tex); color: var(--black); }
+  .concrete::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+    background-image:
+      radial-gradient(circle, rgba(38,38,35,.24) 0 2.5px, rgba(255,255,255,.7) 3px 4px, transparent 4.5px),
+      linear-gradient(to right, rgba(60,60,56,.08) 0 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(60,60,56,.06) 0 1px, transparent 1px);
+    background-size: 150px 150px, 300px 100%, 100% 300px; background-position: 0 0, 75px 0, 0 75px; }
+
+  /* ---- shared type ---- */
+  .mono { font-family: var(--mono); font-size: 17px; letter-spacing: .2em; text-transform: uppercase; }
+  .brandbar { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .brandbar .mark { display: flex; align-items: center; gap: 13px; }
+  .brandbar .mark svg { width: 30px; height: auto; display: block; }
+  .brandbar .mono { color: rgba(242,242,239,.7); }
+  .concrete .brandbar .mono { color: rgba(8,8,8,.55); }
+  .eyebrow { display: inline-flex; align-items: center; gap: 13px; }
+  .eyebrow::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--steel); }
+  .concrete .eyebrow::before { background: var(--steel-deep); }
+  .title { font-family: var(--serif); font-weight: 400; line-height: .94; letter-spacing: -.02em; }
+  .title em { font-style: italic; font-weight: 300; color: var(--on-ink-mute); }
+  .concrete .title em { color: var(--graphite); }
+  .lede { font-size: 26px; line-height: 1.5; color: var(--on-ink-mute); max-width: 26ch; }
+  .concrete .lede { color: var(--graphite); }
+  .rule { height: 1px; background: rgba(242,242,239,.16); }
+  .concrete .rule { background: var(--joint); }
+
+  .facts { display: grid; grid-auto-flow: column; justify-content: start; gap: 0; }
+  .facts div { padding-right: 52px; margin-right: 52px; border-right: 1px solid rgba(242,242,239,.16); }
+  .facts div:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+  .facts b { display: block; font-family: var(--serif); font-weight: 400; font-size: 62px; line-height: 1; }
+  .facts .mono { display: block; margin-top: 8px; font-size: 14px; color: var(--on-ink-mute); letter-spacing: .18em; }
+
+  /* ---- 1: announcement ---- */
+  .s1 { grid-template-rows: auto 1fr auto; text-align: center; justify-items: center; }
+  .s1 .arc { position: absolute; z-index: -1; left: 50%; top: 46%; translate: -50% -50%;
+    width: 1000px; color: var(--steel); opacity: .26;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 4%, #000 34%, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 4%, #000 34%, #000 82%, transparent 100%); }
+  .s1 .mid { display: grid; justify-items: center; align-content: center; gap: 22px; }
+  .s1 .live { display: inline-flex; align-items: center; gap: 15px; font-family: var(--serif); font-style: italic; font-size: 34px; color: rgba(242,242,239,.9); }
+  .s1 .dot { width: 11px; height: 11px; border-radius: 50%; background: #34C759; }
+  .s1 h1 { font-family: var(--serif); font-weight: 300; font-size: 232px; line-height: .82; letter-spacing: -.035em; }
+  .s1 .sub { font-family: var(--serif); font-style: italic; font-size: 33px; color: var(--steel); }
+  .s1 .foot { display: grid; justify-items: center; gap: 26px; width: 100%; }
+
+  /* ---- 2: advisors ---- */
+  .s2 { grid-template-rows: auto auto 1fr auto; gap: 40px; }
+  .s2 .title { font-size: 86px; }
+  .adv-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-content: center; min-height: 0; }
+  .adv { display: grid; gap: 18px; }
+  .adv-photo { aspect-ratio: 3/4; border-radius: 22px; background-color: #121211; background-size: cover;
+               background-position: center var(--pos, 10%); box-shadow: inset 0 0 0 1px var(--line);
+               filter: var(--grade, none); }
+  .adv b { font-size: 26px; font-weight: 600; letter-spacing: -.01em; }
+  .adv .mono { display: block; margin-top: 7px; font-size: 14px; color: var(--steel); letter-spacing: .18em; }
+
+  /* ---- 3: format ---- */
+  .s3 { grid-template-rows: auto auto 1fr; gap: 40px; }
+  .s3 .title { font-size: 92px; }
+  .days { display: grid; height: 100%; align-content: space-between; }
+  .day { display: grid; grid-template-columns: 300px 1fr; gap: 34px; align-items: start;
+         padding: 40px 0; border-top: 1px solid var(--joint); }
+  .day:last-child { border-bottom: 1px solid var(--joint); }
+  .day h3 { font-family: var(--serif); font-weight: 400; font-size: 62px; line-height: .92; letter-spacing: -.02em; }
+  .day h3 span { display: block; font-style: italic; font-size: 30px; color: var(--graphite); margin-top: 8px; }
+  .day .when { font-family: var(--mono); font-size: 14px; letter-spacing: .18em; text-transform: uppercase; color: var(--graphite); margin-bottom: 14px; }
+  .day p { font-size: 25px; line-height: 1.45; color: var(--graphite); }
+  .day p b { color: var(--black); font-weight: 700; }
+
+  /* ---- 4: included ---- */
+  .s4 { grid-template-rows: auto auto 1fr auto; gap: 40px; }
+  .s4 .title { font-size: 96px; }
+  .incl { list-style: none; padding: 0; display: grid; height: 100%; grid-auto-rows: 1fr; gap: 0; }
+  .incl li { display: grid; grid-template-columns: 34px 1fr; gap: 20px; align-items: center; align-content: center;
+             padding: 0; border-top: 1px solid var(--line); font-size: 32px; line-height: 1.35; color: #E2E2DE; }
+  .incl li:last-child { border-bottom: 1px solid var(--line); }
+  .incl svg { width: 26px; height: 26px; color: var(--steel); align-self: center; }
+
+  /* ---- 5: cta ---- */
+  .s5 { grid-template-rows: auto 1fr auto; text-align: center; justify-items: center; }
+  .s5 .mid { display: grid; justify-items: center; align-content: center; gap: 30px; width: 100%; }
+  .s5 .flag { font-family: var(--mono); font-size: 16px; letter-spacing: .2em; text-transform: uppercase;
+              background: var(--steel); color: var(--black); padding: 12px 26px; border-radius: 999px; }
+  .s5 .price { font-family: var(--serif); font-weight: 400; font-size: 200px; line-height: .88; letter-spacing: -.04em; }
+  .s5 .price i { font-style: normal; font-size: 30px; font-family: var(--sans); color: var(--on-ink-mute); letter-spacing: 0; display: block; margin-top: 14px; }
+  .s5 .member { font-family: var(--mono); font-size: 17px; letter-spacing: .18em; text-transform: uppercase;
+                background: var(--amber); color: var(--black); padding: 15px 32px; border-radius: 999px; }
+  .s5 .bar { width: 480px; display: grid; gap: 13px; justify-items: center; }
+  .s5 .meter { width: 100%; height: 4px; border-radius: 4px; background: #2A2A28; overflow: hidden; }
+  .s5 .meter i { display: block; height: 100%; width: 20%; background: var(--steel); }
+  .s5 .bar .mono { font-size: 14px; color: var(--on-ink-mute); letter-spacing: .2em; }
+  .s5 .foot { display: grid; justify-items: center; gap: 18px; }
+  .s5 .url { font-family: var(--serif); font-size: 46px; letter-spacing: -.01em; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 1000 800"><path fill="currentColor" d="M0 800A1000 1000 0 0 1 400 0H600A1000 1000 0 0 1 1000 800H740A480 480 0 0 0 500 384.31A480 480 0 0 0 260 800Z"/></symbol>
+    <symbol id="check" viewBox="0 0 16 16"><path d="M3 8.5 L6.5 12 L13 4.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ 1 · ANNOUNCEMENT ============ -->
+<section class="slide dark s1" id="s1">
+  <svg class="arc" viewBox="0 0 400 320" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+    <path d="M10 320C62 190 136 110 172 0"/>
+    <path d="M390 320c-52-130-126-210-162-320"/>
+    <path d="M92 620c24-116 60-186 78-272"/>
+    <path d="M58 320c30-144 98-186 142-186s112 42 142 186"/>
+    <path d="M46 134h308"/>
+  </svg>
+  <div class="brandbar">
+    <span class="mark"><svg viewBox="0 0 1000 800" style="color:var(--on-ink)"><use href="#mark"/></svg><span class="mono">A Players Club</span></span>
+    <span class="mono">The Global Tour</span>
+  </div>
+  <div class="mid">
+    <p class="live"><span class="dot"></span>October 23–25, 2026</p>
+    <h1>Paris</h1>
+    <p class="sub">A dedicated private mastermind</p>
+  </div>
+  <div class="foot">
+    <div class="rule" style="width:100%"></div>
+    <div class="facts">
+      <div><b>15</b><span class="mono">Seats</span></div>
+      <div><b>3</b><span class="mono">Advisors</span></div>
+      <div><b>3</b><span class="mono">Days</span></div>
+      <div><b>1:1</b><span class="mono">Sessions</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · THE ADVISORS ============ -->
+<section class="slide dark s2" id="s2">
+  <p class="eyebrow mono">The Advisors</p>
+  <h2 class="title">Three advisors.<br><em>Fifteen founders.</em></h2>
+  <div class="adv-row">
+    <div class="adv">
+      <div class="adv-photo" style="background-image: var(--p-james); --grade: brightness(1.14); --pos: 50%"></div>
+      <div><b>James Galligan</b><span class="mono">A Players Club</span></div>
+    </div>
+    <div class="adv">
+      <div class="adv-photo" style="background-image: var(--p-christian); --grade: brightness(1.12) contrast(1.02); --pos: 74%"></div>
+      <div><b>Christian Schuette</b><span class="mono">AI &amp; Systems</span></div>
+    </div>
+    <div class="adv">
+      <div class="adv-photo" style="background-image: var(--p-marius); --grade: brightness(1.14); --pos: 44%"></div>
+      <div><b>Marius Bulai</b><span class="mono">Ads Growth</span></div>
+    </div>
+  </div>
+  <p class="mono" style="color:var(--on-ink-mute);letter-spacing:.2em">Paris · 23–25 October 2026</p>
+</section>
+
+<!-- ============ 3 · THE FORMAT ============ -->
+<section class="slide concrete s3" id="s3">
+  <p class="eyebrow mono">The Format</p>
+  <h2 class="title">Three days,<br><em>three formats.</em></h2>
+  <div class="days">
+    <article class="day">
+      <h3>Day One<span>The Roundtables</span></h3>
+      <div>
+        <p class="when">Friday 23 October</p>
+        <p>Three roundtable sections, <b>one led by each advisor</b>. The opening day is for understanding your business and getting context.</p>
+      </div>
+    </article>
+    <article class="day">
+      <h3>Day Two<span>The One-on-Ones</span></h3>
+      <div>
+        <p class="when">Saturday 24 October</p>
+        <p>Dedicated <b>one-on-one and mini-roundtable slots</b> through the day, with set times booked in for every founder.</p>
+      </div>
+    </article>
+    <article class="day">
+      <h3>Day Three<span>The Experience</span></h3>
+      <div>
+        <p class="when">Sunday 25 October</p>
+        <p>Activities, lunch and a closing roundtable, then the evening at the <b>Moulin Rouge</b>.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 4 · WHAT'S INCLUDED ============ -->
+<section class="slide dark s4" id="s4">
+  <p class="eyebrow mono">What's included</p>
+  <h2 class="title">One room.<br><em>Fifteen seats.</em></h2>
+  <ul class="incl">
+    <li><svg aria-hidden="true"><use href="#check"/></svg>Day One roundtables, one section with each advisor</li>
+    <li><svg aria-hidden="true"><use href="#check"/></svg>Day Two one-on-ones and mini-roundtables, set times</li>
+    <li><svg aria-hidden="true"><use href="#check"/></svg>Day Three activities, lunch and the closing roundtable</li>
+    <li><svg aria-hidden="true"><use href="#check"/></svg>Dinner every evening, included</li>
+    <li><svg aria-hidden="true"><use href="#check"/></svg>The Moulin Rouge dinner experience</li>
+  </ul>
+  <p class="mono" style="color:var(--on-ink-mute);letter-spacing:.2em">Paris · 23–25 October 2026</p>
+</section>
+
+<!-- ============ 5 · THE TICKET ============ -->
+<section class="slide dark s5" id="s5">
+  <div class="brandbar">
+    <span class="mark"><svg viewBox="0 0 1000 800" style="color:var(--on-ink)"><use href="#mark"/></svg><span class="mono">A Players Club</span></span>
+    <span class="mono">Paris · Oct 23–25</span>
+  </div>
+  <div class="mid">
+    <span class="flag">Early bird · 7 seats left</span>
+    <p class="price">€4,000<i>early bird, for the full weekend</i></p>
+    <span class="member">Members receive 25% off · €3,000</span>
+    <div class="bar">
+      <div class="meter"><i></i></div>
+      <span class="mono">20% sold · 12 seats left</span>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="rule" style="width:420px"></div>
+    <p class="url">aplayersparis.com</p>
+  </div>
+</section>
+
+<script>
+  // Same concrete grain the site generates, so the light slide matches.
+  (function () {
+    try {
+      var S = 360, c = document.createElement("canvas"); c.width = c.height = S;
+      var x = c.getContext("2d");
+      x.fillStyle = "#ECEBE7"; x.fillRect(0, 0, S, S);
+      for (var i = 0; i < 70; i++) {
+        var r = 14 + Math.random() * 60, px = Math.random() * S, py = Math.random() * S, light = Math.random() > .5;
+        for (var dx = -S; dx <= S; dx += S) for (var dy = -S; dy <= S; dy += S) {
+          var g = x.createRadialGradient(px + dx, py + dy, 0, px + dx, py + dy, r);
+          g.addColorStop(0, light ? "rgba(255,255,255,0.03)" : "rgba(40,40,36,0.03)");
+          g.addColorStop(1, "rgba(0,0,0,0)");
+          x.fillStyle = g; x.fillRect(px + dx - r, py + dy - r, 2 * r, 2 * r);
+        }
+      }
+      for (var j = 0; j < 16000; j++) {
+        var v = (Math.random() * 255) | 0;
+        x.fillStyle = "rgba(" + v + "," + v + "," + (v - 4) + ",0.035)";
+        x.fillRect(Math.random() * S, Math.random() * S, 1, 1);
+      }
+      document.documentElement.style.setProperty("--tex", "url(" + c.toDataURL("image/png") + ")");
+    } catch (e) {}
+  })();
+</script>
+</body>
+</html>
