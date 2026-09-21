@@ -101,9 +101,11 @@ been removed. The bios now claim only what could be verified:
 
 - **Christian Schuette** — verbatim from the Marbella site's "Meet the Host" block.
 - **Marius Bulai** — "Founder — Altitude, coolest Meta Ads agency for Online
-  Businesses" is legible on his own stage slide. The three figures on that slide
-  ($20M+, $7fig, $0) are on the page nowhere, because their captions are too
-  low-resolution to read and an uncaptioned figure means nothing.
+  Businesses" is legible on his own stage slide. The $400M ad spend figure and
+  the client names (Kiyosaki, Cardone, Sapp) were supplied directly by James.
+  The three figures printed on the slide in his photograph ($20M+, $7fig, $0)
+  are deliberately not quoted anywhere, because their captions are unreadable
+  at that resolution.
 - **James Galligan** — role and the €50k–€500k/m room size, which is the
   Marbella site's own phrasing.
 
