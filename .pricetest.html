@@ -998,7 +998,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       ? "<b>Every seat is taken.</b> Join the waitlist and we\u2019ll come to you first if one frees up."
       : early
         ? "<b>" + seat(earlyLeft) + " left at the " + eur(PRICING.earlyPrice) + " early bird price.</b> After that it rises to " + eur(PRICING.fullPrice) + "."
-        : "<b>The early bird seats are gone.</b> " + (left === 1 ? "The last seat is " : "The last " + seat(left) + " are ") + eur(PRICING.fullPrice) + ".";
+        : "<b>The early bird seats are gone.</b> The last " + seat(left) + (left === 1 ? " is " : " are ") + eur(PRICING.fullPrice) + ".";
 
     var meter = document.querySelector("[data-meter]");
     if (meter) meter.style.width = Math.max(4, pct) + "%";

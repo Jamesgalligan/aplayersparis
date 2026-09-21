@@ -26,7 +26,8 @@ python3 build.py     # src/page.html + assets/images.css -> index.html
 seat count on the page:
 
 ```js
-var PRICING = { seats: 15, sold: 0, earlyCount: 10, earlyPrice: 4000, fullPrice: 5000 };
+var PRICING = { seats: 15, sold: 3, earlyCount: 10, earlyPrice: 4000,
+                fullPrice: 5000, memberOff: 0.25 };
 ```
 
 `memberOff` in the same block is the A Players Club member discount (0.25).
@@ -37,9 +38,13 @@ At 25% the member price is EUR 3,000 while early seats last, EUR 3,750 after.
 **Whop does not know about this discount** - it needs a 25% promo code set up
 on the plan before members can actually redeem it.
 
-Update `sold` as seats are taken and redeploy. The first 10 seats show €4,000;
-from the 10th sale onward the page flips to €5,000 on its own. At `sold: 15`
-every CTA becomes "Join the waitlist".
+`sold` is the single number to update as seats go. It drives the progress bar,
+the "% sold" line, the seats-left counts and the tier flag. The first 10 seats
+are the €4,000 **early bird**; from the 10th sale the page flips to €5,000 on
+its own. At `sold: 15` every CTA becomes "Join the waitlist".
+
+It currently reads `sold: 3`, which is what puts the bar at 20% sold. That is a
+public claim about how many seats have gone, so keep it truthful.
 
 Note this is a static count, not live inventory — it does not read from Whop.
 
