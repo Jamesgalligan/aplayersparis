@@ -10,7 +10,7 @@ Adapted from the A Players Dublin build.
 | `index.html` | **The deployable file.** Self-contained, ~1.8 MB, no build step at runtime. Drop it on any static host. |
 | `src/page.html` | Editable source. Same as `index.html` but with a `/*IMAGES*/` marker instead of the base64 photos. **Edit this, not `index.html`.** |
 | `assets/images.css` | The 34 embedded photographs, extracted from the Dublin build. Workshop, roundtable, working-session and dinner shots only — gala / black-tie / afterparty imagery is deliberately excluded. |
-| `assets/people.css` | Advisor portraits. Christian Schuette (from aplayersmarbella.com) and Marius Bulai (cropped and graded from a supplied stage photo). James Galligan pending. |
+| `assets/people.css` | All three advisor portraits, 720px wide and colour-matched. Christian Schuette from aplayersmarbella.com; Marius Bulai and James Galligan cropped and graded from supplied stage photographs. |
 | `build.py` | Inlines the photos into `src/page.html` → `index.html`. Only embeds images the page actually references. |
 | `favicon.svg` | The A Players arch mark. |
 
@@ -41,12 +41,11 @@ Note this is a static count, not live inventory — it does not read from Whop.
    empty and marked with a TODO) and set it to the Paris plan URL. While it is
    empty the reserve form still captures the lead to Supabase + Trakyo, then shows
    "we'll be in touch within 24 hours" instead of redirecting.
-2. **Add James Galligan's headshot.** Christian and Marius are in;
-   James still falls back to a serif monogram. To add him: base64 the image into
-   `assets/people.css` as `--p-james`, then put the `has-photo` class and
-   `style="--photo: var(--p-james)"` on his `.adv-card` and `.bio-card`.
-   Each portrait can be tuned independently with `--photo-grade` (a CSS filter)
-   and `--photo-pos` (vertical framing), as Marius's cards do.
+2. **Replace a portrait** by dropping new base64 into `assets/people.css` under
+   the same `--p-*` name. Framing and exposure are per-card in `src/page.html`
+   via `--photo-pos` (vertical position) and `--photo-grade` (a CSS filter), so
+   a new photo may need those retuned. The serif-monogram fallback still works:
+   remove the `has-photo` class and the inline `--photo` to go back to it.
 3. **Confirm the advisor bio claims.** Christian's copy is taken verbatim from
    aplayersmarbella.com. Marius's and James's are written from public sources
    and carry no revenue figures — see the note below.
