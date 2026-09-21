@@ -12,7 +12,7 @@ arch mark and photography as aplayersparis.com.
 | `out/paris-05.png` | The ticket — €4,000 early bird, 25% member price, aplayersparis.com |
 
 `paris-0N.png` are 1080x1350, ready to upload. `paris-0N@2x.png` are the
-2160x2700 masters if anything needs reworking or printing.
+4320x5400 masters if anything needs reworking or printing.
 
 ## Re-rendering
 
@@ -24,4 +24,4 @@ check them against the live card before posting.
 1. Serve the repo root (`python3 -m http.server 4173`)
 2. Open `http://localhost:4173/social/slides.html`
 3. Screenshot each `.slide` at 1080x1350, deviceScaleFactor 2
-4. Downscale the 2x files to 1080 wide
+4. Downscale the masters to 1080 wide
