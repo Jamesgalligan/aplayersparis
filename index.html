@@ -245,18 +245,6 @@ fbq('init','747158551764136');fbq('track','PageView');
   .q figcaption .mono { color: var(--on-ink-mute); font-size: 10.5px; text-transform: none; letter-spacing: .04em; }
   .q.feature { box-shadow: 0 24px 40px -28px rgba(0,0,0,.8), inset 0 0 0 1px rgba(182,190,198,.45); }
 
-  /* ---------- gallery ---------- */
-  .mosaic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: clamp(150px, 17vw, 230px); gap: 12px; }
-  .ph { border-radius: 18px; background-image: var(--img); background-size: cover; background-position: center; position: relative; overflow: hidden; }
-  .ph span { position: absolute; left: 12px; bottom: 12px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: #FFFFFF; background: rgba(8,8,8,.45); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); padding: 5px 9px; border-radius: 999px; }
-  .mosaic .ph:nth-child(1) { grid-column: 1; grid-row: 1 / span 2; }
-  .mosaic .ph:nth-child(2) { grid-column: 2 / span 2; grid-row: 1; }
-  .mosaic .ph:nth-child(3) { grid-column: 4; grid-row: 1 / span 2; }
-  .mosaic .ph:nth-child(4) { grid-column: 2; grid-row: 2; }
-  .mosaic .ph:nth-child(5) { grid-column: 3; grid-row: 2; }
-  .mosaic .ph:nth-child(6) { grid-column: 1 / span 2; grid-row: 3; }
-  .mosaic .ph:nth-child(7) { grid-column: 3; grid-row: 3; }
-  .mosaic .ph:nth-child(8) { grid-column: 4; grid-row: 3; }
 
   /* ---------- the single ticket ---------- */
   .tier-solo { width: min(100%, 620px); margin-inline: auto; }
@@ -407,10 +395,6 @@ fbq('init','747158551764136');fbq('track','PageView');
     .facts div:nth-child(n+3) { margin-top: 14px; }
     .sec-head { grid-template-columns: minmax(0, 1fr); }
     .faq-grid { grid-template-columns: minmax(0, 1fr); }
-    .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: clamp(140px, 36vw, 240px); }
-    .mosaic .ph:nth-child(n) { grid-column: auto; grid-row: auto; }
-    .mosaic .ph:nth-child(1), .mosaic .ph:nth-child(3) { grid-row: span 2; }
-    .mosaic .ph:nth-child(6) { grid-column: span 2; }
     .nav-links a:not(.pill) { display: none; }
   }
   @media (max-width: 640px) {
@@ -825,25 +809,6 @@ fbq('init','747158551764136');fbq('track','PageView');
     </div>
   </section>
 
-  <section class="section dark" aria-labelledby="room-title">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow mono">Inside the room</p>
-        <h2 id="room-title" class="sec-title">Long tables, <em>longer conversations.</em></h2>
-        <p class="sec-lede">Photographs from earlier chapters of the Global Tour: the roundtables, the working sessions and the dinners that follow them.</p>
-      </div>
-      <div class="mosaic">
-        <div class="ph" style="--img: var(--city-london-fri)" role="img" aria-label="Founders around the roundtable in London"><span>Roundtable · London</span></div>
-        <div class="ph" style="--img: var(--fri-dinner-1)" role="img" aria-label="A candlelit restaurant full of founders at dinner"><span>Founders' dinner</span></div>
-        <div class="ph" style="--img: var(--city-vienna-fri)" role="img" aria-label="Founders around the roundtable in Vienna"><span>Roundtable · Vienna</span></div>
-        <div class="ph" style="--img: var(--fri-dinner-4)" role="img" aria-label="Two founders shaking hands across a dinner table"><span>The handshake</span></div>
-        <div class="ph" style="--img: var(--city-stockholm-fri)" role="img" aria-label="Founders around the roundtable in Stockholm"><span>Roundtable · Stockholm</span></div>
-        <div class="ph" style="--img: var(--fri-dinner-6)" role="img" aria-label="Founders at a long table lined with wine shelves"><span>Long table</span></div>
-        <div class="ph" style="--img: var(--gal-8)" role="img" aria-label="The mastermind room in Amsterdam"><span>Mastermind · Amsterdam</span></div>
-        <div class="ph" style="--img: var(--fri-dinner-3)" role="img" aria-label="Founders talking and laughing at a long dinner table"><span>Founders' dinner</span></div>
-      </div>
-    </div>
-  </section>
 
   <section class="section dark" aria-labelledby="faq-title">
     <div class="wrap faq-grid">
