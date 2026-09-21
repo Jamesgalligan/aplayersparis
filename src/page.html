@@ -270,6 +270,13 @@ fbq('init','747158551764136');fbq('track','PageView');
   .tier-price s { color: var(--on-ink-mute); opacity: .55; font-family: var(--serif); font-size: 30px; text-decoration-thickness: 1px; }
   .tier-step { display: flex; align-items: center; gap: 10px; margin: -6px 0 0; padding: 10px 14px; border-radius: 12px; background: rgba(182,190,198,.08); box-shadow: inset 0 0 0 1px rgba(182,190,198,.22); color: var(--steel); font-size: 13.5px; line-height: 1.45; }
   .tier-step b { font-weight: 700; color: var(--on-ink); }
+  .tier-member { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; gap: 12px; margin: -4px 0 0; padding: 12px 14px; border-radius: 16px; background: rgba(242,242,239,.07); box-shadow: inset 0 0 0 1px rgba(242,242,239,.16); }
+  .tier-member .app-icon { width: 30px; height: 30px; border-radius: 8px; background: var(--black); display: grid; place-items: center; box-shadow: inset 0 0 0 1px rgba(255,255,255,.16); }
+  .tier-member .app-icon svg { display: block; width: 56%; height: auto; }
+  .tier-member p { margin: 0; font-size: 13.5px; line-height: 1.4; color: #D8D8D4; }
+  .tier-member b { font-weight: 700; color: var(--on-ink); }
+  .tier-member span.amt { font-family: var(--serif); font-size: 26px; line-height: 1; color: var(--on-ink); white-space: nowrap; font-variant-numeric: lining-nums; }
+  @media (max-width: 420px) { .tier-member { grid-template-columns: auto minmax(0, 1fr); } .tier-member span.amt { grid-column: 2; font-size: 22px; } }
   .tier-meter { display: grid; gap: 8px; }
   .meter { height: 3px; border-radius: 3px; background: #2A2A28; overflow: hidden; }
   .meter i { display: block; height: 100%; background: var(--steel); }
@@ -478,7 +485,7 @@ fbq('init','747158551764136');fbq('track','PageView');
 
     <div class="hero-grid">
       <h1 class="hero-title">Three days. Three advisors. <em>Fifteen founders.</em></h1>
-      <p class="hero-sub">A limited advisory mastermind on AI, ads and branding — workshop-led start to finish, with private one-to-one hours with all three advisors.</p>
+      <p class="hero-sub">A dedicated private mastermind on AI, ads and branding. Closed-door workshops, one-on-one breakdowns and roundtable access over three days in Paris.</p>
 
       <div class="advisor-row">
         <a class="adv" href="#advisors">
@@ -538,7 +545,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       <div class="sec-head">
         <p class="eyebrow mono">The format</p>
         <h2 id="format-title" class="sec-title">Workshop-led, <em>all three days.</em></h2>
-        <p class="sec-lede">This is not a conference. There is no audience and no back row. Fifteen founders, three advisors, and three days spent working on your business — with private one-to-one hours with each of us, booked in rather than scrambled for.</p>
+        <p class="sec-lede">This is a dedicated private mastermind. Every attendee gets closed-door workshops, one-on-one breakdowns and roundtable access over the three days in Paris. Fifteen seats, three advisors, three days on your business.</p>
       </div>
 
       <div class="days">
@@ -557,14 +564,14 @@ fbq('init','747158551764136');fbq('track','PageView');
             <div class="day-name"><h3>Day One</h3><span>AI</span></div>
             <p class="day-date mono">Friday 23 October · Workshop into dinner</p>
             <p class="day-sub">AI, built into the business</p>
-            <p class="day-desc">The room opens with everyone's numbers on the table. Christian then works through where AI actually removes cost and time from your business — and where it is an expensive distraction. You leave with systems running, not a reading list.</p>
+            <p class="day-desc">Everyone puts their numbers on the table. Christian runs a closed-door workshop on where AI takes cost and time out of your business. You leave with systems running in yours.</p>
             <div class="chips"><span class="chip steel">15 seats</span><span class="chip">Private hours</span><span class="chip">Dinner included</span></div>
           </div>
           <div class="times-col">
             <ul class="times">
-              <li><span class="mono">Morning</span><div><b>Opening workshop</b><span class="d">Every business in the room laid out in the open: the numbers, the team and the three real constraints on growth.</span></div></li>
-              <li><span class="mono">Afternoon</span><div><b>Private hours</b><span class="d">Your first one-to-one sessions. Your business worked through directly, not a case study on a slide.</span></div></li>
-              <li><span class="mono">Evening</span><div><b>Opening dinner</b><span class="d">A long table in Paris. The conversation does not stop when the workshop does.</span></div></li>
+              <li><span class="mono">Morning</span><div><b>Opening workshop</b><span class="d">Every business in the room laid out in full. The numbers, the team, and the three constraints on growth.</span></div></li>
+              <li><span class="mono">Afternoon</span><div><b>Private hours</b><span class="d">Your first one-on-one breakdowns. We work on your business directly.</span></div></li>
+              <li><span class="mono">Evening</span><div><b>Opening dinner</b><span class="d">A long table in Paris. The room stays together after the workshop.</span></div></li>
             </ul>
             <div class="day-topics">
               <span class="mono">Topics</span>
@@ -588,14 +595,14 @@ fbq('init','747158551764136');fbq('track','PageView');
             <div class="day-name"><h3>Day Two</h3><span>Ads</span></div>
             <p class="day-date mono">Saturday 24 October · Workshop into dinner</p>
             <p class="day-sub">Paid acquisition, rebuilt</p>
-            <p class="day-desc">Marius takes the room through the ad account, the tracking and the offer underneath it — the same work behind €65M in ad spend and €300M in client revenue. Bring your account. We open it in the room.</p>
+            <p class="day-desc">Marius runs the room through the ad account, the tracking and the offer underneath it. Bring your account. We open it in the room and rebuild it.</p>
             <div class="chips"><span class="chip dark">Live account reviews</span><span class="chip">Private hours</span><span class="chip">Dinner &amp; evening</span></div>
           </div>
           <div class="times-col">
             <ul class="times">
-              <li><span class="mono">Morning</span><div><b>Ads workshop</b><span class="d">Creative, tracking and the offer behind them. Real accounts opened and rebuilt live.</span></div></li>
-              <li><span class="mono">Afternoon</span><div><b>Private hours</b><span class="d">Your second round of one-to-one sessions across all three advisors.</span></div></li>
-              <li><span class="mono">Evening</span><div><b>Dinner &amp; the evening programme</b><span class="d">Dinner, then the curated evening. Paris earns its reputation.</span></div></li>
+              <li><span class="mono">Morning</span><div><b>Ads workshop</b><span class="d">Creative, tracking and the offer behind them. Real accounts opened and rebuilt in the room.</span></div></li>
+              <li><span class="mono">Afternoon</span><div><b>Private hours</b><span class="d">Your second round of one-on-one breakdowns with all three advisors.</span></div></li>
+              <li><span class="mono">Evening</span><div><b>Dinner &amp; the evening programme</b><span class="d">Dinner, then the evening programme.</span></div></li>
             </ul>
             <div class="day-topics">
               <span class="mono">Topics</span>
@@ -620,13 +627,13 @@ fbq('init','747158551764136');fbq('track','PageView');
             <div class="day-name"><h3>Day Three</h3><span>Branding</span></div>
             <p class="day-date mono">Sunday 25 October · Workshop into dinner</p>
             <p class="day-sub">The brand that outlasts the ads</p>
-            <p class="day-desc">The room works through positioning and brand: what you stand for, what you charge for it, and the story the market repeats back to you. Nobody leaves without a written ninety-day plan.</p>
+            <p class="day-desc">A closed-door workshop on positioning and brand. What you stand for, what you charge for it, and how the market describes you. Everyone leaves with a written ninety-day plan.</p>
             <div class="chips"><span class="chip steel">Positioning workshop</span><span class="chip">Final private hours</span><span class="chip">Closing dinner</span></div>
           </div>
           <div class="times-col">
             <ul class="times">
-              <li><span class="mono">Morning</span><div><b>Brand workshop</b><span class="d">Positioning, identity, and the story you want the market repeating back to you.</span></div></li>
-              <li><span class="mono">Afternoon</span><div><b>Final hours &amp; the plan</b><span class="d">Your last one-to-one sessions, then the ninety-day plan written before you leave the room.</span></div></li>
+              <li><span class="mono">Morning</span><div><b>Brand workshop</b><span class="d">Positioning, identity, and the words you want the market using about you.</span></div></li>
+              <li><span class="mono">Afternoon</span><div><b>Final hours &amp; the plan</b><span class="d">Your last one-on-one breakdowns, then your ninety-day plan, written before you leave.</span></div></li>
               <li><span class="mono">Evening</span><div><b>Closing dinner</b><span class="d">The weekend closes at the table it opened at.</span></div></li>
             </ul>
             <div class="day-topics">
@@ -653,7 +660,7 @@ fbq('init','747158551764136');fbq('track','PageView');
               <div><span>3</span><span class="mono">Days</span></div>
               <div><span>1:1</span><span class="mono">Sessions</span></div>
             </div>
-            <p>Every attendee gets private one-to-one time with all three advisors across the three days — scheduled in advance, not competed for in a corridor. Fifteen seats is the number that makes that arithmetic work.</p>
+            <p>Every attendee gets one-on-one breakdowns with all three advisors, scheduled in advance. Fifteen seats is what makes that possible.</p>
           </div>
         </div>
       </div>
@@ -682,7 +689,7 @@ fbq('init','747158551764136');fbq('track','PageView');
         <article class="bio">
           <div class="bio-card has-photo" style="--photo: var(--p-marius); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 45%" role="img" aria-label="Marius Bulai"><span class="bio-mark">MB</span></div>
           <div class="bio-head"><b>Marius Bulai</b><span class="mono">Ads Growth</span></div>
-          <p>Founder of Altitude, a Meta ads agency for online businesses. A media buyer first, with the tracking and attribution underneath it — he has bought media for Robert Kiyosaki, Pace Morby and Ryan Pineda.</p>
+          <p>Founder of Altitude, a Meta ads agency for online businesses. A media buyer first, with the tracking and attribution underneath it. He has bought media for Robert Kiyosaki, Pace Morby and Ryan Pineda.</p>
           <ul class="bio-facts">
             <li><svg aria-hidden="true"><use href="#check"/></svg>Founder of Altitude</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Meta ads agency for online businesses</li>
@@ -692,7 +699,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       </div>
 
       <div class="advisors-foot">
-        <p>Each advisor leads a day in their own discipline, and every attendee gets private one-to-one time with all three across the weekend — applied to your own business, not demonstrated on a stage.</p>
+        <p>Each advisor leads one day. Every attendee gets one-on-one time with all three over the weekend, working on their own business.</p>
         <button class="pill pill-line" type="button" data-checkout>Reserve my seat</button>
       </div>
     </div>
@@ -733,7 +740,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       <div class="sec-head">
         <p class="eyebrow mono">Reserve your seat</p>
         <h2 id="tickets-title" class="sec-title">One room. <em>Fifteen seats.</em></h2>
-        <p class="sec-lede">One ticket, all three days. Every workshop, every private hour and every dinner is included — you cover your flights and your hotel, nothing else. The first ten seats are €4,000; the last five are €5,000.</p>
+        <p class="sec-lede">One ticket covers all three days. Every workshop, every one-on-one and every dinner is included. You cover your flights and your hotel. The first ten seats are €4,000 and the last five are €5,000.</p>
       </div>
       <div class="tier-solo">
         <article class="tier">
@@ -744,13 +751,18 @@ fbq('init','747158551764136');fbq('track','PageView');
           </div>
           <div class="tier-price"><b data-price>€4,000</b><span data-price-note>for the full weekend</span></div>
           <p class="tier-step" data-step-note><b>First 10 seats at €4,000.</b> The price rises to €5,000 for the remaining five.</p>
+          <div class="tier-member">
+            <span class="app-icon" aria-hidden="true"><svg viewBox="0 0 1000 800"><path fill="#FFFFFF" d="M0 800A1000 1000 0 0 1 400 0H600A1000 1000 0 0 1 1000 800H740A480 480 0 0 0 500 384.31A480 480 0 0 0 260 800Z"/></svg></span>
+            <p><b>Members receive 20% off</b> all ticket prices.</p>
+            <span class="amt" data-member-price>€3,200</span>
+          </div>
           <div class="tier-meter"><div class="meter"><i data-meter style="width:0%"></i></div><span class="mono" data-seats-line>15 seats · open now</span></div>
           <ul>
             <li><svg aria-hidden="true"><use href="#check"/></svg>All three workshop days — AI, ads and branding</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>Private one-to-one hours with all three advisors</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>One-on-one breakdowns with all three advisors</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Your ninety-day plan, written before you leave</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Dinner every evening, included</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>The curated evening programme across the weekend</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>The evening programme across the weekend</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>A room capped at fifteen founders</li>
           </ul>
           <button class="pill pill-light btn" type="button" data-checkout>Reserve my seat</button>
@@ -765,7 +777,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       <div class="sec-head">
         <p class="eyebrow mono">The Global Tour · 2026</p>
         <h2 id="tour-title" class="sec-title">We've been all across <em>Europe this year.</em></h2>
-        <p class="sec-lede">Six chapters so far. Paris is a different format — smaller, private and workshop-led throughout — but the room is drawn from the same network.</p>
+        <p class="sec-lede">Six chapters so far. Paris is a smaller, private format, drawn from the same network.</p>
       </div>
       <div class="cities">
         <article class="city-card" aria-label="Vienna, Austria">
@@ -851,11 +863,11 @@ fbq('init','747158551764136');fbq('track','PageView');
       <div class="faq">
         <details>
           <summary>Is this a conference?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>No. There is no stage and no audience. All three days are workshop-led, with fifteen founders in the room and three advisors working through the businesses in it — including yours.</p>
+          <p>No. It is a dedicated private mastermind. Fifteen founders, three advisors, and three days of closed-door workshops and one-on-one breakdowns.</p>
         </details>
         <details>
           <summary>What do the private hours actually mean?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>Every attendee gets scheduled one-to-one time with all three advisors across the weekend — Christian on AI, Marius on ads, James on the business behind both. Sessions are booked in advance so nobody is competing for attention in a corridor. Fifteen seats is what makes that possible.</p>
+          <p>Every attendee gets scheduled one-on-one time with all three advisors: Christian on AI, Marius on ads, James on the business behind both. Sessions are booked in advance. Fifteen seats is what makes that possible.</p>
         </details>
         <details>
           <summary>Where in Paris is it?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
@@ -866,20 +878,24 @@ fbq('init','747158551764136');fbq('track','PageView');
           <p>All three workshop days, your private hours with all three advisors, dinner every evening and the evening programme across the weekend. Flights and accommodation are not included.</p>
         </details>
         <details>
+          <summary>Is there a members discount?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
+          <p>Yes. A Players Club members take 20% off whichever price is live, so €4,000 becomes €3,200 while the early seats last. Use your member code at checkout.</p>
+        </details>
+        <details>
           <summary>Why does the price go up?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>The first ten seats are €4,000. Once those are taken the remaining five are €5,000. It is the same room and the same three days either way — the earlier you commit, the less you pay.</p>
+          <p>The first ten seats are €4,000. Once those are taken the remaining five are €5,000. It is the same room and the same three days either way. The earlier you commit, the less you pay.</p>
         </details>
         <details>
           <summary>Where does AI fit in?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>Day One is built around it, led by Christian: where AI genuinely removes cost and time from your business, and where it doesn't. It carries into the ads and branding days too, because that is how it shows up in a real business.</p>
+          <p>Day One is built around it, led by Christian: where AI takes cost and time out of your business. It carries into the ads and branding days as well.</p>
         </details>
         <details>
           <summary>Do I need to attend all three days?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>Yes. The weekend is built as one continuous piece of work, ending with a written plan. There is no single-day ticket.</p>
+          <p>Yes. The three days run as one piece of work and end with a written plan. There is no single-day ticket.</p>
         </details>
         <details>
           <summary>Who should attend?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>Established entrepreneurs who already have a business with revenue and want three days of senior attention on it, in a room small enough that everyone gets heard.</p>
+          <p>Established entrepreneurs with revenue already coming in, who want three days of direct attention on their business in a room of fifteen.</p>
         </details>
       </div>
     </div>
@@ -1043,6 +1059,8 @@ fbq('init','747158551764136');fbq('track','PageView');
         el.textContent = el.classList.contains("mbar") ? "Join the waitlist" : "Join the waitlist";
       });
     }
+
+    set("[data-member-price]", eur(Math.round(price * 0.8)));
 
     window.__APC_PRICE = price;
   })();
