@@ -37,9 +37,11 @@ Note this is a static count, not live inventory — it does not read from Whop.
 
 ## Before launch
 
-1. **Paste the Whop checkout URL.** In `src/page.html`, find `CFG.checkout` (it is
-   empty and marked with a TODO) and set it to the Paris plan URL. While it is
-   empty the reserve form still captures the lead to Supabase + Trakyo, then shows
+1. **Check the Whop plan price.** `CFG.checkout` points at
+   `https://whop.com/checkout/plan_P1FjwOpo09JN8`. The page charges EUR 4,000
+   for the first ten seats and EUR 5,000 after, so the Whop plan has to be
+   changed by hand when the price steps up - nothing syncs it automatically.
+   Blanking `CFG.checkout` reverts the form to capture-only, showing
    "we'll be in touch within 24 hours" instead of redirecting.
 2. **Replace a portrait** by dropping new base64 into `assets/people.css` under
    the same `--p-*` name. Framing and exposure are per-card in `src/page.html`

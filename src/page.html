@@ -469,15 +469,15 @@ fbq('init','747158551764136');fbq('track','PageView');
 
       <div class="advisor-row">
         <a class="adv" href="#advisors">
-          <span class="adv-card has-photo" style="--photo: var(--p-james); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 8%" role="img" aria-label="James Galligan"><span class="adv-mark">JG</span><span class="adv-rule" aria-hidden="true"></span></span>
+          <span class="adv-card has-photo" style="--photo: var(--p-james); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 45%" role="img" aria-label="James Galligan"><span class="adv-mark">JG</span><span class="adv-rule" aria-hidden="true"></span></span>
           <span class="adv-meta"><b>James Galligan</b><span class="mono">A Players Club</span></span>
         </a>
         <a class="adv" href="#advisors">
-          <span class="adv-card has-photo" style="--photo: var(--p-christian)" role="img" aria-label="Christian Schuette"><span class="adv-mark">CS</span><span class="adv-rule" aria-hidden="true"></span></span>
+          <span class="adv-card has-photo" style="--photo: var(--p-christian); --photo-grade: brightness(1.12) contrast(1.02) saturate(.95)" role="img" aria-label="Christian Schuette"><span class="adv-mark">CS</span><span class="adv-rule" aria-hidden="true"></span></span>
           <span class="adv-meta"><b>Christian Schuette</b><span class="mono">AI</span></span>
         </a>
         <a class="adv" href="#advisors">
-          <span class="adv-card has-photo" style="--photo: var(--p-marius); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 42%" role="img" aria-label="Marius Bulai"><span class="adv-mark">MB</span><span class="adv-rule" aria-hidden="true"></span></span>
+          <span class="adv-card has-photo" style="--photo: var(--p-marius); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 45%" role="img" aria-label="Marius Bulai"><span class="adv-mark">MB</span><span class="adv-rule" aria-hidden="true"></span></span>
           <span class="adv-meta"><b>Marius Bulai</b><span class="mono">Ads Growth</span></span>
         </a>
       </div>
@@ -640,7 +640,7 @@ fbq('init','747158551764136');fbq('track','PageView');
 
       <div class="advisors">
         <article class="bio">
-          <div class="bio-card has-photo" style="--photo: var(--p-james); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 4%" role="img" aria-label="James Galligan"><span class="bio-mark">JG</span></div>
+          <div class="bio-card has-photo" style="--photo: var(--p-james); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 45%" role="img" aria-label="James Galligan"><span class="bio-mark">JG</span></div>
           <div class="bio-head"><b>James Galligan</b><span class="mono">A Players Club</span></div>
           <p>Founder of A Players Club, the network behind the Global Tour. Hosts the rooms that connect European founders doing €50k–€500k a month, and sits alongside Christian at the VVIP roundtables.</p>
           <ul class="bio-facts">
@@ -650,7 +650,7 @@ fbq('init','747158551764136');fbq('track','PageView');
           </ul>
         </article>
         <article class="bio">
-          <div class="bio-card has-photo" style="--photo: var(--p-christian)" role="img" aria-label="Christian Schuette"><span class="bio-mark">CS</span></div>
+          <div class="bio-card has-photo" style="--photo: var(--p-christian); --photo-grade: brightness(1.12) contrast(1.02) saturate(.95)" role="img" aria-label="Christian Schuette"><span class="bio-mark">CS</span></div>
           <div class="bio-head"><b>Christian Schuette</b><span class="mono">AI &amp; Systems</span></div>
           <p>Founder of a €40M/year portfolio who built the software processing €200M+/year in F1 ticket sales. Also CEO of Germany's largest branding agency, with Mercedes and Red Bull on the client list. Privately advises entrepreneurs running €500k–€2M/month.</p>
           <ul class="bio-facts">
@@ -660,7 +660,7 @@ fbq('init','747158551764136');fbq('track','PageView');
           </ul>
         </article>
         <article class="bio">
-          <div class="bio-card has-photo" style="--photo: var(--p-marius); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 4%" role="img" aria-label="Marius Bulai"><span class="bio-mark">MB</span></div>
+          <div class="bio-card has-photo" style="--photo: var(--p-marius); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 45%" role="img" aria-label="Marius Bulai"><span class="bio-mark">MB</span></div>
           <div class="bio-head"><b>Marius Bulai</b><span class="mono">Ads Growth</span></div>
           <p>Founder of Altitude, a Meta ads agency for online businesses. A media buyer first, with the tracking and attribution underneath it — he has bought media for Robert Kiyosaki, Pace Morby and Ryan Pineda.</p>
           <ul class="bio-facts">
@@ -1065,13 +1065,9 @@ fbq('init','747158551764136');fbq('track','PageView');
     var CFG = {
       city: "Paris",
 
-      // ─────────────────────────────────────────────────────────────
-      // TODO: paste the Paris Whop plan URL here, e.g.
-      //   "https://whop.com/checkout/plan_XXXXXXXXXX"
-      // While this is empty the form still captures the lead, then
-      // shows the "we'll be in touch" panel instead of redirecting.
-      checkout: "",
-      // ─────────────────────────────────────────────────────────────
+      // Paris Whop plan. If this is ever blanked the form still captures
+      // the lead and shows the "we'll be in touch" panel instead.
+      checkout: "https://whop.com/checkout/plan_P1FjwOpo09JN8",
 
       tierName: "The Paris Mastermind",
       supabase: "https://dbxafbczhrdmruhhcitt.supabase.co",
