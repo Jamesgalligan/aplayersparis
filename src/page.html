@@ -109,8 +109,11 @@ fbq('init','747158551764136');fbq('track','PageView');
   @keyframes arrive { from { transform: translateY(18px); opacity: 0; } }
   .adv-card { position: relative; width: 100%; aspect-ratio: 1 / 1.08; border-radius: 20px; overflow: hidden; isolation: isolate; display: grid; place-items: center; background-color: #121211; background-image: var(--photo, none); background-size: cover; background-position: center top; box-shadow: inset 0 0 0 1px var(--line), 0 40px 70px -40px rgba(0,0,0,.95); }
   .adv-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 90% at 50% 12%, #21211F 0%, #101010 72%); }
-  .adv-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0) 42%, rgba(8,8,8,.72) 100%); opacity: 0; transition: opacity .3s ease; }
+  .adv-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0) 58%, rgba(8,8,8,.5) 100%); opacity: 0; transition: opacity .3s ease; }
   .adv-card.has-photo::after { opacity: 1; }
+  .adv-card.has-photo::before, .bio-card.has-photo::before { background: none; }
+  .adv-card.has-photo, .bio-card.has-photo { filter: brightness(1.24) contrast(1.04) saturate(.95); }
+  .adv-card.has-photo { background-position: center 14%; }
   .adv-mark { font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 5.6vw, 78px); line-height: 1; letter-spacing: .02em; color: var(--steel); opacity: .9; }
   .adv-card.has-photo .adv-mark { display: none; }
   .adv-rule { position: absolute; left: 50%; bottom: 18%; width: 26px; height: 1px; transform: translateX(-50%); background: rgba(182,190,198,.45); }
@@ -197,6 +200,8 @@ fbq('init','747158551764136');fbq('track','PageView');
   .bio { display: grid; gap: 16px; align-content: start; }
   .bio-card { position: relative; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; isolation: isolate; display: grid; place-items: center; background-color: #121211; background-image: var(--photo, none); background-size: cover; background-position: center top; box-shadow: inset 0 0 0 1px var(--line); }
   .bio-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 90% at 50% 14%, #21211F 0%, #101010 72%); }
+  .bio-card.has-photo { background-position: center 10%; }
+  .bio-card.has-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(8,8,8,0) 62%, rgba(8,8,8,.42) 100%); }
   .bio-mark { font-family: var(--serif); font-weight: 300; font-size: clamp(52px, 6vw, 86px); line-height: 1; color: var(--steel); opacity: .9; }
   .bio-card.has-photo .bio-mark { display: none; }
   .bio-head { display: grid; gap: 4px; }
@@ -252,6 +257,9 @@ fbq('init','747158551764136');fbq('track','PageView');
   .tier-price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-block: 4px; }
   .tier-price b { font-family: var(--serif); font-weight: 400; font-size: clamp(56px, 7vw, 84px); line-height: .9; letter-spacing: -.03em; font-variant-numeric: lining-nums; }
   .tier-price span { color: var(--on-ink-mute); font-size: 14.5px; }
+  .tier-price s { color: var(--on-ink-mute); opacity: .55; font-family: var(--serif); font-size: 30px; text-decoration-thickness: 1px; }
+  .tier-step { display: flex; align-items: center; gap: 10px; margin: -6px 0 0; padding: 10px 14px; border-radius: 12px; background: rgba(182,190,198,.08); box-shadow: inset 0 0 0 1px rgba(182,190,198,.22); color: var(--steel); font-size: 13.5px; line-height: 1.45; }
+  .tier-step b { font-weight: 700; color: var(--on-ink); }
   .tier-meter { display: grid; gap: 8px; }
   .meter { height: 3px; border-radius: 3px; background: #2A2A28; overflow: hidden; }
   .meter i { display: block; height: 100%; background: var(--steel); }
@@ -461,7 +469,7 @@ fbq('init','747158551764136');fbq('track','PageView');
 
       <div class="advisor-row">
         <a class="adv" href="#advisors">
-          <span class="adv-card" role="img" aria-label="Christian Schuette"><span class="adv-mark">CS</span><span class="adv-rule" aria-hidden="true"></span></span>
+          <span class="adv-card has-photo" style="--photo: var(--p-christian)" role="img" aria-label="Christian Schuette"><span class="adv-mark">CS</span><span class="adv-rule" aria-hidden="true"></span></span>
           <span class="adv-meta"><b>Christian Schuette</b><span class="mono">Branding</span></span>
         </a>
         <a class="adv" href="#advisors">
@@ -632,33 +640,33 @@ fbq('init','747158551764136');fbq('track','PageView');
 
       <div class="advisors">
         <article class="bio">
-          <div class="bio-card" role="img" aria-label="Christian Schuette"><span class="bio-mark">CS</span></div>
+          <div class="bio-card has-photo" style="--photo: var(--p-christian)" role="img" aria-label="Christian Schuette"><span class="bio-mark">CS</span></div>
           <div class="bio-head"><b>Christian Schuette</b><span class="mono">Branding &amp; F1 Software</span></div>
-          <p>CEO of Germany's largest branding agency, with Red Bull and Mercedes on the client list. Built a $200M/year software business inside Formula 1, and partners with the A Players Global Tour.</p>
+          <p>Founder of a €40M/year portfolio and CEO of Germany's largest branding agency. Built the software processing €200M+/year in F1 ticket sales, and runs brand systems for Mercedes, Red Bull and some of the largest luxury brands in the world.</p>
           <ul class="bio-facts">
-            <li><svg aria-hidden="true"><use href="#check"/></svg>Red Bull &amp; Mercedes on the client list</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>$200M/year software business built inside F1</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>15+ years across software, media and services</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>€40M/year portfolio</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Brand systems for Mercedes &amp; Red Bull</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Advises founders at €500k–€2M/month</li>
           </ul>
         </article>
         <article class="bio">
           <div class="bio-card" role="img" aria-label="Marius Bulai"><span class="bio-mark">MB</span></div>
           <div class="bio-head"><b>Marius Bulai</b><span class="mono">Ads Growth</span></div>
-          <p>Media buyer and founder of Altitude Digital. Has run €65M+ in ad spend producing €300M+ in client revenue, with a client list that includes Robert Kiyosaki, Pace Morby and Ryan Pineda.</p>
+          <p>Media buyer and founder of Altitude Digital, specialising in paid acquisition and the tracking underneath it. Has bought media for Robert Kiyosaki, Pace Morby and Ryan Pineda.</p>
           <ul class="bio-facts">
-            <li><svg aria-hidden="true"><use href="#check"/></svg>€65M+ in managed ad spend</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>€300M+ in client revenue generated</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Founder of Altitude Digital</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Meta media buying at scale</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Tracking and attribution specialist</li>
           </ul>
         </article>
         <article class="bio">
           <div class="bio-card" role="img" aria-label="James Galligan"><span class="bio-mark">JG</span></div>
-          <div class="bio-head"><b>James Galligan</b><span class="mono">A Players Club &amp; OBOX</span></div>
-          <p>Founder of A Players Club, built to $2M/year at 22. The club now connects 180+ European founders doing €15k–€500k a month, with 25+ masterminds hosted since 2024.</p>
+          <div class="bio-head"><b>James Galligan</b><span class="mono">A Players Club</span></div>
+          <p>Founder of A Players Club, the network behind the Global Tour. Hosts the rooms that connect European founders doing €50k–€500k a month, and sits alongside Christian at the VVIP roundtables.</p>
           <ul class="bio-facts">
-            <li><svg aria-hidden="true"><use href="#check"/></svg>$2M/year built by 22</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>180+ founders across Europe</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>25+ masterminds hosted since 2024</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Founder of A Players Club</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Host of the A Players Global Tour</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Rooms of €50k–€500k/month founders</li>
           </ul>
         </article>
       </div>
@@ -676,8 +684,8 @@ fbq('init','747158551764136');fbq('track','PageView');
         <p class="eyebrow mono">Testimonials</p>
         <h2 id="quotes-title" class="sec-title">What attendees <em>say.</em></h2>
         <div class="stats">
-          <div class="stat"><b>25+</b><span class="mono">Masterminds hosted</span></div>
-          <div class="stat"><b>180+</b><span class="mono">Founders in the club</span></div>
+          <div class="stat"><b>23+</b><span class="mono">Events hosted</span></div>
+          <div class="stat"><b>700+</b><span class="mono">Attendees</span></div>
           <div class="stat"><b>16+</b><span class="mono">Cities</span></div>
         </div>
       </div>
@@ -705,17 +713,18 @@ fbq('init','747158551764136');fbq('track','PageView');
       <div class="sec-head">
         <p class="eyebrow mono">Reserve your seat</p>
         <h2 id="tickets-title" class="sec-title">One room. <em>Fifteen seats.</em></h2>
-        <p class="sec-lede">One ticket, all three days. Every workshop, every private hour and every dinner is included — you cover your flights and your hotel, nothing else.</p>
+        <p class="sec-lede">One ticket, all three days. Every workshop, every private hour and every dinner is included — you cover your flights and your hotel, nothing else. The first ten seats are €4,000; the last five are €5,000.</p>
       </div>
       <div class="tier-solo">
         <article class="tier">
-          <span class="tier-flag">15 seats only</span>
+          <span class="tier-flag" data-tier-flag>First 10 seats · €4,000</span>
           <div class="tier-head">
             <h3 class="tier-name">The Paris Mastermind</h3>
             <span class="tier-days mono">Fri 23 + Sat 24 + Sun 25 October</span>
           </div>
-          <div class="tier-price"><b>€3,000</b><span>for the full weekend</span></div>
-          <div class="tier-meter"><div class="meter"><i style="width:20%"></i></div><span class="mono">Open now · seats released in one block</span></div>
+          <div class="tier-price"><b data-price>€4,000</b><span data-price-note>for the full weekend</span></div>
+          <p class="tier-step" data-step-note><b>First 10 seats at €4,000.</b> The price rises to €5,000 for the remaining five.</p>
+          <div class="tier-meter"><div class="meter"><i data-meter style="width:0%"></i></div><span class="mono" data-seats-line>15 seats · open now</span></div>
           <ul>
             <li><svg aria-hidden="true"><use href="#check"/></svg>All three workshop days — AI, ads and branding</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Private one-to-one hours with all three advisors</li>
@@ -833,8 +842,12 @@ fbq('init','747158551764136');fbq('track','PageView');
           <p>We're confirming the venue now. Everyone holding a seat hears first, well ahead of the weekend.</p>
         </details>
         <details>
-          <summary>What's included in the €3,000?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
+          <summary>What's included in the ticket?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
           <p>All three workshop days, your private hours with all three advisors, dinner every evening and the evening programme across the weekend. Flights and accommodation are not included.</p>
+        </details>
+        <details>
+          <summary>Why does the price go up?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
+          <p>The first ten seats are €4,000. Once those are taken the remaining five are €5,000. It is the same room and the same three days either way — the earlier you commit, the less you pay.</p>
         </details>
         <details>
           <summary>Where does AI fit in?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
@@ -884,8 +897,8 @@ fbq('init','747158551764136');fbq('track','PageView');
     <p class="eyebrow mono co-eyebrow">Paris · 23–25 October 2026</p>
     <h2 id="co-title" class="co-title">Reserve your <em>seat.</em></h2>
     <div class="co-summary">
-      <div><b>The Paris Mastermind</b><small>All three days · 15 seats</small></div>
-      <i>€3,000</i>
+      <div><b>The Paris Mastermind</b><small data-summary-note>All three days · 15 seats</small></div>
+      <i data-price>€4,000</i>
     </div>
     <form class="co-form" id="co-form" novalidate>
       <input type="hidden" name="trakyo_id">
@@ -912,9 +925,79 @@ fbq('init','747158551764136');fbq('track','PageView');
   </div>
 </div>
 
-<button class="pill mbar" type="button" data-checkout>Reserve my seat · €3,000</button>
+<button class="pill mbar" type="button" data-checkout>Reserve my seat · <span data-price>€4,000</span></button>
 
 <style>/*IMAGES*/</style>
+
+<script>
+  (function () {
+    // ─────────────────────────────────────────────────────────────
+    // PRICING — update `sold` as seats are taken and redeploy.
+    // Everything on the page (price, flag, meter, seats line, the
+    // sticky bar and the reserve modal) follows from these numbers.
+    // ─────────────────────────────────────────────────────────────
+    var PRICING = {
+      seats: 15,        // total seats in the room
+      sold: 0,          // <- seats taken so far
+      earlyCount: 10,   // how many go at the early price
+      earlyPrice: 4000,
+      fullPrice: 5000
+    };
+
+    var sold = Math.max(0, Math.min(PRICING.seats, PRICING.sold));
+    var early = sold < PRICING.earlyCount;
+    var price = early ? PRICING.earlyPrice : PRICING.fullPrice;
+    var left = PRICING.seats - sold;
+    var earlyLeft = Math.max(0, PRICING.earlyCount - sold);
+    var eur = function (n) { return "\u20ac" + n.toLocaleString("en-US"); };
+    var seat = function (n) { return n + (n === 1 ? " seat" : " seats"); };
+    var set = function (sel, text) {
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function (el) { el.textContent = text; });
+    };
+
+    set("[data-price]", eur(price));
+    set("[data-price-note]", early ? "for the full weekend" : "for the full weekend \u00b7 final seats");
+
+    var flag = document.querySelector("[data-tier-flag]");
+    if (flag) flag.textContent = left === 0
+      ? "Sold out"
+      : early
+        ? (earlyLeft === PRICING.earlyCount ? "First " + seat(earlyLeft) : "Only " + seat(earlyLeft) + " left") + " at " + eur(PRICING.earlyPrice)
+        : "Final " + seat(left) + " \u00b7 " + eur(PRICING.fullPrice);
+
+    var step = document.querySelector("[data-step-note]");
+    if (step) step.innerHTML = left === 0
+      ? "<b>Every seat is taken.</b> Join the waitlist and we\u2019ll come to you first if one frees up."
+      : early
+        ? "<b>" + seat(earlyLeft) + " left at " + eur(PRICING.earlyPrice) + ".</b> After that the price rises to " + eur(PRICING.fullPrice) + "."
+        : "<b>The " + eur(PRICING.earlyPrice) + " seats are gone.</b> The last " + seat(left) + (left === 1 ? " is " : " are ") + eur(PRICING.fullPrice) + ".";
+
+    var meter = document.querySelector("[data-meter]");
+    if (meter) meter.style.width = Math.max(4, Math.round((sold / PRICING.seats) * 100)) + "%";
+
+    set("[data-seats-line]", left === 0
+      ? "Sold out"
+      : sold === 0
+        ? PRICING.seats + " seats \u00b7 open now"
+        : sold + " of " + PRICING.seats + " taken \u00b7 " + left + " left");
+
+    set("[data-summary-note]", left === 0
+      ? "All three days \u00b7 waitlist"
+      : sold === 0
+        ? "All three days \u00b7 " + seat(PRICING.seats)
+        : "All three days \u00b7 " + seat(left) + " left");
+
+    // Sold out: stop selling a seat that doesn't exist.
+    if (left === 0) {
+      set("[data-price]", eur(PRICING.fullPrice));
+      Array.prototype.forEach.call(document.querySelectorAll("[data-checkout]"), function (el) {
+        el.textContent = el.classList.contains("mbar") ? "Join the waitlist" : "Join the waitlist";
+      });
+    }
+
+    window.__APC_PRICE = price;
+  })();
+</script>
 
 <script>
   (function () {
@@ -1114,7 +1197,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       busy = true; submit.disabled = true;
       fireEvent("reserve", { firstName: first, lastName: last, email: email, phone: phone });
 
-      track("track", "InitiateCheckout", { content_name: CFG.tierName, content_type: "product", currency: "EUR", value: 3000 });
+      track("track", "InitiateCheckout", { content_name: CFG.tierName, content_type: "product", currency: "EUR", value: window.__APC_PRICE || 4000 });
       track("track", "Lead");
       touchpoint({ touchpoint_type: "form_lead", name: name, email: email, phone: phone, action: "checkout_form_submit", entry_type: CFG.tierName });
       submit.textContent = CFG.checkout ? "Taking you to checkout…" : "Sending…";

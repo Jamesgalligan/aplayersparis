@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 PAGE = ROOT / "src" / "page.html"
-IMAGES = ROOT / "assets" / "images.css"
+IMAGE_FILES = [ROOT / "assets" / "images.css", ROOT / "assets" / "people.css"]
 OUT = ROOT / "index.html"
 MARKER = "/*IMAGES*/"
 
@@ -18,15 +18,18 @@ page = PAGE.read_text(encoding="utf-8")
 if MARKER not in page:
     sys.exit("marker %s missing from %s" % (MARKER, PAGE))
 
-available = dict(
-    re.findall(r"(--[a-z0-9-]+):\s*(url\(data:image/[a-z]+;base64,[A-Za-z0-9+/=]+\));",
-               IMAGES.read_text(encoding="utf-8"))
-)
+available = {}
+for f in IMAGE_FILES:
+    if f.exists():
+        available.update(
+            re.findall(r"(--[a-z0-9-]+):\s*(url\(data:image/[a-z]+;base64,[A-Za-z0-9+/=]+\));",
+                       f.read_text(encoding="utf-8"))
+        )
 
 used = sorted({m for m in re.findall(r"var\((--[a-z0-9-]+)\)", page) if m in available})
-missing = sorted({m for m in re.findall(r"var\((--(?:img|city|gal|av|fri)-[a-z0-9-]+)\)", page)} - set(available))
+missing = sorted({m for m in re.findall(r"var\((--(?:img|city|gal|av|fri|p)-[a-z0-9-]+)\)", page)} - set(available))
 if missing:
-    sys.exit("page references images not in assets/images.css: " + ", ".join(missing))
+    sys.exit("page references images not found in assets/: " + ", ".join(missing))
 
 block = ":root{" + "".join("%s:%s;" % (k, available[k]) for k in used) + "}"
 OUT.write_text(page.replace(MARKER, block), encoding="utf-8")
