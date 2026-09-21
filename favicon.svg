@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="A Players">
+  <rect width="1000" height="1000" rx="220" fill="#080808"/>
+  <path fill="#F2F2EF" d="M100 800A1000 1000 0 0 1 400 100H600A1000 1000 0 0 1 900 800H740A480 480 0 0 0 500 484.31A480 480 0 0 0 260 800Z"/>
+</svg>
