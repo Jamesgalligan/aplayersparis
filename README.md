@@ -10,7 +10,7 @@ Adapted from the A Players Dublin build.
 | `index.html` | **The deployable file.** Self-contained, ~1.8 MB, no build step at runtime. Drop it on any static host. |
 | `src/page.html` | Editable source. Same as `index.html` but with a `/*IMAGES*/` marker instead of the base64 photos. **Edit this, not `index.html`.** |
 | `assets/images.css` | The 34 embedded photographs, extracted from the Dublin build. Workshop, roundtable, working-session and dinner shots only — gala / black-tie / afterparty imagery is deliberately excluded. |
-| `assets/people.css` | All three advisor portraits, 720px wide and colour-matched. Christian Schuette from aplayersmarbella.com; Marius Bulai and James Galligan cropped and graded from supplied stage photographs. |
+| `assets/people.css` | All four advisor portraits, 720px wide and colour-matched. Christian Schuette from aplayersmarbella.com; Marius Bulai and James Galligan cropped and graded from supplied stage photographs. |
 | `build.py` | Inlines the photos into `src/page.html` → `index.html`. Only embeds images the page actually references. |
 | `favicon.svg` | The A Players arch mark. |
 
@@ -100,6 +100,8 @@ None of those numbers appear anywhere in that site's actual source. They have
 been removed. The bios now claim only what could be verified:
 
 - **Christian Schuette** — verbatim from the Marbella site's "Meet the Host" block.
+- **Jake Trinder** — agency positioning and the Gary Vee / Ali Abdaal /
+  80+ client claims were supplied directly by James.
 - **Marius Bulai** — "Founder — Altitude, coolest Meta Ads agency for Online
   Businesses" is legible on his own stage slide. The $400M ad spend figure and
   the client names (Kiyosaki, Cardone, Sapp) were supplied directly by James.

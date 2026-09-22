@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A three-day AI, Ads &amp; Branding workshop mastermind in Paris, 23–25 October 2026. Fifteen founders, three advisors, private one-to-one hours with each.">
+<meta name="description" content="A three-day AI, Ads &amp; Branding workshop mastermind in Paris, 23–25 October 2026. Fifteen founders, four advisors, one-on-one sessions with each.">
 <meta property="og:title" content="A Players Paris · 23–25 October 2026">
-<meta property="og:description" content="Three days. Three advisors. Fifteen founders. A limited advisory mastermind, workshop-led throughout.">
+<meta property="og:description" content="Three days. Four advisors. Fifteen founders. A dedicated private mastermind in Paris.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
 <meta name="theme-color" content="#080808">
@@ -101,9 +101,9 @@ fbq('init','747158551764136');fbq('track','PageView');
   .hero-city { position: relative; display: grid; justify-items: center; margin-top: clamp(26px, 3.2vw, 38px); }
   /* The Eiffel base arch, drawn as line work behind the city name. It echoes
      the arch in the A Players mark, so Paris reads as brand, not clip-art. */
-  .arc { position: absolute; z-index: -1; left: 50%; bottom: -20%; translate: -50% 0; width: min(88vw, 600px); height: auto; color: var(--steel); opacity: .3; pointer-events: none;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 84%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, #000 30%, #000 84%, transparent 100%);
+  .arc { position: absolute; z-index: -1; left: 50%; bottom: -24%; translate: -50% 0; width: min(88vw, 600px); height: auto; color: var(--steel); opacity: .3; pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 48%, #000 86%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 48%, #000 86%, transparent 100%);
     animation: arc-in 1.6s cubic-bezier(.3,.7,.3,1) .35s both; }
   .arc path, .arc line { vector-effect: non-scaling-stroke; }
   @keyframes arc-in { from { opacity: 0; transform: translateY(14px) scale(.985); } }
@@ -112,7 +112,7 @@ fbq('init','747158551764136');fbq('track','PageView');
   .city { font-family: var(--serif); font-weight: 300; font-size: clamp(58px, 8.4vw, 116px); line-height: .84; letter-spacing: -.025em; margin: 12px 0 0; color: var(--on-ink); }
 
   /* ---------- hero advisor cards ---------- */
-  .advisor-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); width: min(100%, 780px); margin-top: clamp(26px, 3.2vw, 38px); }
+  .advisor-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.3vw, 18px); width: min(100%, 980px); margin-top: clamp(26px, 3.2vw, 38px); }
   .adv { display: grid; gap: 12px; text-decoration: none; justify-items: center; text-align: center; animation: arrive .9s cubic-bezier(.3,.7,.3,1) both; }
   .adv:nth-child(1) { animation-delay: .08s; }
   .adv:nth-child(2) { animation-delay: .18s; }
@@ -132,8 +132,10 @@ fbq('init','747158551764136');fbq('track','PageView');
   .adv-meta { display: grid; gap: 3px; }
   .adv-meta b { font-size: 15px; font-weight: 600; letter-spacing: .01em; }
   .adv-meta .mono { color: var(--steel-deep); font-size: 10px; }
+  @media (max-width: 620px) {
+    .advisor-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; row-gap: 20px; }
+  }
   @media (max-width: 560px) {
-    .advisor-row { gap: 10px; }
     .adv-meta b { font-size: 13px; }
     .adv-meta .mono { font-size: 8.5px; letter-spacing: .1em; }
   }
@@ -207,8 +209,8 @@ fbq('init','747158551764136');fbq('track','PageView');
   .panel p { color: var(--on-ink-mute); font-size: 14.5px; line-height: 1.55; margin: 0; }
   @media (max-width: 520px) { .panel { padding: 18px; } .panel-units { gap: 0 12px; } }
 
-  .advisors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 2.4vw, 30px); }
-  .bio { display: grid; gap: 16px; align-content: start; }
+  .advisors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: auto; column-gap: clamp(16px, 1.8vw, 24px); row-gap: 16px; }
+  .bio { display: grid; grid-row: span 4; grid-template-rows: subgrid; gap: 16px; align-content: stretch; }
   .bio-card { position: relative; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; isolation: isolate; display: grid; place-items: center; background-color: #121211; background-image: var(--photo, none); background-size: cover; background-position: center top; box-shadow: inset 0 0 0 1px var(--line); }
   .bio-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 90% at 50% 14%, #21211F 0%, #101010 72%); }
   .bio-card.has-photo { background-position: center var(--photo-pos, 10%); }
@@ -216,7 +218,7 @@ fbq('init','747158551764136');fbq('track','PageView');
   .bio-mark { font-family: var(--serif); font-weight: 300; font-size: clamp(52px, 6vw, 86px); line-height: 1; color: var(--steel); opacity: .9; }
   .bio-card.has-photo .bio-mark { display: none; }
   .bio-head { display: grid; gap: 4px; }
-  .bio-head b { font-size: 19px; font-weight: 600; letter-spacing: -.005em; }
+  .bio-head b { font-size: 18px; font-weight: 600; letter-spacing: -.005em; }
   .bio-head .mono { color: var(--steel); font-size: 10.5px; }
   .bio p { color: var(--on-ink-mute); font-size: 15px; line-height: 1.6; }
   .bio-facts { list-style: none; margin: 0; padding: 14px 0 0; display: grid; gap: 8px; border-top: 1px solid var(--line); }
@@ -224,7 +226,8 @@ fbq('init','747158551764136');fbq('track','PageView');
   .bio-facts li svg { width: 15px; height: 15px; margin-top: 2px; color: var(--steel-deep); }
   .advisors-foot { margin-top: 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px 32px; padding-top: 28px; border-top: 1px solid var(--line); }
   .advisors-foot p { color: var(--on-ink-mute); max-width: 62ch; }
-  @media (max-width: 900px) { .advisors { grid-template-columns: minmax(0, 1fr); max-width: 460px; margin-inline: auto; gap: 40px; } }
+  @media (max-width: 1080px) { .advisors { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; row-gap: 16px; } .advisors .bio:nth-child(n+3) { margin-top: 26px; } }
+  @media (max-width: 620px) { .advisors { grid-template-columns: minmax(0, 1fr); max-width: 460px; margin-inline: auto; } .advisors .bio:nth-child(n+2) { margin-top: 26px; } }
 
   /* ---------- testimonials ---------- */
   .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 8px; }
@@ -465,8 +468,8 @@ fbq('init','747158551764136');fbq('track','PageView');
     </nav>
 
     <div class="hero-grid">
-      <h1 class="hero-title">Three days. Three advisors. <em>Fifteen founders.</em></h1>
-      <p class="hero-sub">A dedicated private mastermind on AI, ads and branding. Closed-door workshops, one-on-one breakdowns and roundtable access over three days in Paris.</p>
+      <h1 class="hero-title">Three days. Four advisors. <em>Fifteen founders.</em></h1>
+      <p class="hero-sub">A dedicated private mastermind on AI, ads, YouTube and branding. Closed-door workshops, one-on-one breakdowns and roundtable access over three days in Paris.</p>
 
       <div class="advisor-row">
         <a class="adv" href="#advisors">
@@ -480,6 +483,10 @@ fbq('init','747158551764136');fbq('track','PageView');
         <a class="adv" href="#advisors">
           <span class="adv-card has-photo" style="--photo: var(--p-marius); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 45%" role="img" aria-label="Marius Bulai"><span class="adv-mark">MB</span><span class="adv-rule" aria-hidden="true"></span></span>
           <span class="adv-meta"><b>Marius Bulai</b><span class="mono">Ads Growth</span></span>
+        </a>
+        <a class="adv" href="#advisors">
+          <span class="adv-card has-photo" style="--photo: var(--p-jake); --photo-grade: brightness(1.04) contrast(1.02); --photo-pos: 24%" role="img" aria-label="Jake Trinder"><span class="adv-mark">JT</span><span class="adv-rule" aria-hidden="true"></span></span>
+          <span class="adv-meta"><b>Jake Trinder</b><span class="mono">YouTube</span></span>
         </a>
       </div>
 
@@ -515,6 +522,7 @@ fbq('init','747158551764136');fbq('track','PageView');
     <ul class="collab-names">
       <li>Christian Schuette <small>AI</small></li>
       <li>Marius Bulai <small>Ads</small></li>
+      <li>Jake Trinder <small>YouTube</small></li>
       <li>A Players Club <small>Host</small></li>
     </ul>
   </div>
@@ -526,7 +534,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       <div class="sec-head">
         <p class="eyebrow mono">The format</p>
         <h2 id="format-title" class="sec-title">Three days, <em>three formats.</em></h2>
-        <p class="sec-lede">This is a dedicated private mastermind. Every attendee gets closed-door workshops, one-on-one breakdowns and roundtable access over the three days in Paris. Fifteen seats, three advisors, three days on your business.</p>
+        <p class="sec-lede">This is a dedicated private mastermind. Every attendee gets closed-door workshops, one-on-one breakdowns and roundtable access over the three days in Paris. Fifteen seats, four advisors, three days on your business.</p>
       </div>
 
       <div class="days">
@@ -545,14 +553,15 @@ fbq('init','747158551764136');fbq('track','PageView');
             <div class="day-name"><h3>Day One</h3><span>The Roundtables</span></div>
             <p class="day-date mono">Friday 23 October · Roundtables into dinner</p>
             <p class="day-sub">Context before implementation</p>
-            <p class="day-desc">The opening day runs as three roundtable sections, one led by each advisor. We work through your business, your setup and where the constraints sit, so Day Two starts with the context already on the table.</p>
-            <div class="chips"><span class="chip steel">Three sections</span><span class="chip">One led by each advisor</span><span class="chip">Dinner included</span></div>
+            <p class="day-desc">The opening day runs as four roundtable sections, one led by each advisor. We work through your business, your setup and where the constraints sit, so Day Two starts with the context already on the table.</p>
+            <div class="chips"><span class="chip steel">Four sections</span><span class="chip">One led by each advisor</span><span class="chip">Dinner included</span></div>
           </div>
           <div class="times-col">
             <ul class="times">
               <li><span class="mono">Section one</span><div><b>Roundtable with Christian</b><span class="d">AI and the systems running underneath the business.</span></div></li>
               <li><span class="mono">Section two</span><div><b>Roundtable with Marius</b><span class="d">Paid acquisition, the tracking and the offer behind it.</span></div></li>
-              <li><span class="mono">Section three</span><div><b>Roundtable with James</b><span class="d">Where the business is now, and what it needs next.</span></div></li>
+              <li><span class="mono">Section three</span><div><b>Roundtable with Jake</b><span class="d">YouTube strategy and the content engine around it.</span></div></li>
+              <li><span class="mono">Section four</span><div><b>Roundtable with James</b><span class="d">Where the business is now, and what it needs next.</span></div></li>
               <li><span class="mono">Evening</span><div><b>Opening dinner</b><span class="d">A long table in Paris. The room stays together after the roundtables.</span></div></li>
             </ul>
             <div class="day-topics">
@@ -633,17 +642,17 @@ fbq('init','747158551764136');fbq('track','PageView');
     <div class="wrap">
       <div class="sec-head">
         <p class="eyebrow mono">The advisors</p>
-        <h2 id="advisors-title" class="sec-title">Three advisors. <em>Fifteen founders.</em></h2>
+        <h2 id="advisors-title" class="sec-title">Four advisors. <em>Fifteen founders.</em></h2>
         <div class="spk-side">
           <div class="panel">
             <p class="mono panel-label"><span class="live-dot" aria-hidden="true"></span>What the one-on-ones mean</p>
             <div class="panel-units">
               <div><span>15</span><span class="mono">Seats</span></div>
-              <div><span>3</span><span class="mono">Advisors</span></div>
+              <div><span>4</span><span class="mono">Advisors</span></div>
               <div><span>3</span><span class="mono">Days</span></div>
               <div><span>1:1</span><span class="mono">Sessions</span></div>
             </div>
-            <p>Day Two is given over to one-on-one and mini-roundtable slots. Every founder has set times with all three advisors, booked in advance. Fifteen seats is what makes that possible.</p>
+            <p>Day Two is given over to one-on-one and mini-roundtable slots. Every founder has set times with all four advisors, booked in advance. Fifteen seats is what makes that possible.</p>
           </div>
         </div>
       </div>
@@ -670,6 +679,16 @@ fbq('init','747158551764136');fbq('track','PageView');
           </ul>
         </article>
         <article class="bio">
+          <div class="bio-card has-photo" style="--photo: var(--p-jake); --photo-grade: brightness(1.04) contrast(1.02); --photo-pos: 30%" role="img" aria-label="Jake Trinder"><span class="bio-mark">JT</span></div>
+          <div class="bio-head"><b>Jake Trinder</b><span class="mono">YouTube Strategy</span></div>
+          <p>Founder of one of the biggest YouTube strategy agencies in the industry, with Gary Vee, Ali Abdaal and 80+ more on the client list.</p>
+          <ul class="bio-facts">
+            <li><svg aria-hidden="true"><use href="#check"/></svg>80+ clients</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Gary Vee &amp; Ali Abdaal</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>YouTube strategy and growth</li>
+          </ul>
+        </article>
+        <article class="bio">
           <div class="bio-card has-photo" style="--photo: var(--p-marius); --photo-grade: brightness(1.14) contrast(1.0); --photo-pos: 45%" role="img" aria-label="Marius Bulai"><span class="bio-mark">MB</span></div>
           <div class="bio-head"><b>Marius Bulai</b><span class="mono">Ads Growth</span></div>
           <p>Founder of Altitude, a Meta ads agency for online businesses. A media buyer first, with the tracking and attribution underneath it. He has run ads for Robert Kiyosaki, Grant Cardone and Shelby Sapp.</p>
@@ -682,7 +701,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       </div>
 
       <div class="advisors-foot">
-        <p>Each advisor leads a roundtable section on Day One, then runs one-on-one sessions through Day Two. Every founder gets set times with all three.</p>
+        <p>Each advisor leads a roundtable section on Day One, then runs one-on-one sessions through Day Two. Every founder gets set times with all four.</p>
         <button class="pill pill-line" type="button" data-checkout>Reserve my seat</button>
       </div>
     </div>
@@ -738,7 +757,7 @@ fbq('init','747158551764136');fbq('track','PageView');
           <div class="tier-meter"><div class="meter"><i data-meter style="width:0%"></i></div><span class="mono" data-seats-line>20% sold · 12 seats left</span></div>
           <ul>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Day One roundtables, one section with each advisor</li>
-            <li><svg aria-hidden="true"><use href="#check"/></svg>Day Two one-on-ones and mini-roundtables, set times</li>
+            <li><svg aria-hidden="true"><use href="#check"/></svg>Day Two one-on-ones with all four advisors, set times</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Day Three activities, lunch and the closing roundtable</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Dinner every evening, included</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>The Moulin Rouge dinner experience</li>
@@ -823,11 +842,11 @@ fbq('init','747158551764136');fbq('track','PageView');
       <div class="faq">
         <details>
           <summary>Is this a traditional mastermind held by A Players?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>No. The Global Tour weekends run a main stage, a thousand attendees and a gala. Paris is a dedicated private mastermind: fifteen founders, three advisors, and three days of closed-door workshops and one-on-one breakdowns.</p>
+          <p>No. The Global Tour weekends run a main stage, a thousand attendees and a gala. Paris is a dedicated private mastermind: fifteen founders, four advisors, and three days of closed-door workshops and one-on-one breakdowns.</p>
         </details>
         <details>
           <summary>What do the one-on-one sessions involve?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>Day Two runs on set times. Every founder gets one-on-one slots with all three advisors, Christian on AI, Marius on ads and James on the business behind both, with mini-roundtables in between. Everything is booked in advance, so nobody waits.</p>
+          <p>Day Two runs on set times. Every founder gets one-on-one slots with all four advisors, Christian on AI, Marius on ads, Jake on YouTube and James on the business behind them, with mini-roundtables in between. Everything is booked in advance, so nobody waits.</p>
         </details>
         <details>
           <summary>Where in Paris is it?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
@@ -835,7 +854,7 @@ fbq('init','747158551764136');fbq('track','PageView');
         </details>
         <details>
           <summary>What's included in the ticket?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>All three days, your one-on-one sessions with all three advisors, dinner every evening and the Moulin Rouge experience on the closing night. Flights and accommodation are not included.</p>
+          <p>All three days, your one-on-one sessions with all four advisors, dinner every evening and the Moulin Rouge experience on the closing night. Flights and accommodation are not included.</p>
         </details>
         <details>
           <summary>Is there a members discount?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
