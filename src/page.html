@@ -327,8 +327,34 @@ fbq('init','747158551764136');fbq('track','PageView');
   .co-field select:has(option[value=""]:checked) { color: var(--on-ink-mute); }
   .co-field select option { color: var(--on-ink); background: var(--black); }
   .co-field input:focus, .co-field select:focus, .co-phone select:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--steel); }
-  .co-phone { display: grid; grid-template-columns: 112px 1fr; gap: 8px; }
-  .co-phone select { padding-inline: 10px; appearance: none; -webkit-appearance: none; }
+  /* ---- phone field ---- */
+  .phone { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px; }
+  .phone-cc { display: flex; align-items: center; gap: 8px; font: inherit; font-size: 15px; color: var(--on-ink); background: var(--black); border: 0; border-radius: 12px; padding: 12px 12px; box-shadow: inset 0 0 0 1px var(--line); cursor: pointer; white-space: nowrap; }
+  .phone-cc:hover { box-shadow: inset 0 0 0 1px #3A3A37; }
+  .phone-cc:focus-visible { outline: none; box-shadow: inset 0 0 0 1.5px var(--steel); }
+  .phone-flag { font-size: 17px; line-height: 1; }
+  .phone-dial { font-variant-numeric: tabular-nums; }
+  .phone-chev { width: 13px; height: 13px; color: var(--on-ink-mute); flex: none; transition: transform .2s ease; }
+  .phone-cc[aria-expanded="true"] .phone-chev { transform: rotate(180deg); }
+  /* 16px keeps iOS from zooming the viewport when the field takes focus. */
+  .phone-num { width: 100%; font: inherit; font-size: 16px; color: var(--on-ink); background: var(--black); border: 0; border-radius: 12px; padding: 12px 14px; box-shadow: inset 0 0 0 1px var(--line); }
+  .phone-num:focus { outline: none; box-shadow: inset 0 0 0 1.5px var(--steel); }
+  .phone.is-valid .phone-num, .phone.is-valid .phone-num:focus { box-shadow: inset 0 0 0 1.5px var(--live); }
+  .phone.is-invalid .phone-num, .phone.is-invalid .phone-num:focus { box-shadow: inset 0 0 0 1.5px #FF7A7A; }
+  .phone-hint { margin: 6px 0 0; font-size: 12.5px; line-height: 1.4; min-height: 1px; }
+  .phone-hint.bad { color: #FF9A9A; }
+  .phone-hint.good { color: var(--live); }
+  .phone-pop { position: absolute; z-index: 5; top: calc(100% + 6px); left: 0; width: min(330px, 100%); background: var(--card-2); border-radius: 16px; box-shadow: inset 0 0 0 1px var(--line), 0 26px 50px -20px rgba(0,0,0,.9); overflow: hidden; }
+  .phone-pop[hidden] { display: none; }
+  .phone-search { width: 100%; font: inherit; font-size: 16px; color: var(--on-ink); background: transparent; border: 0; border-bottom: 1px solid var(--line); padding: 12px 14px; }
+  .phone-search:focus { outline: none; }
+  .phone-search::placeholder { color: var(--on-ink-mute); }
+  .phone-list { list-style: none; margin: 0; padding: 4px; max-height: 232px; overflow-y: auto; overscroll-behavior: contain; }
+  .phone-list li { display: flex; align-items: center; gap: 10px; padding: 9px 11px; border-radius: 10px; cursor: pointer; font-size: 14.5px; }
+  .phone-list li[aria-selected="true"], .phone-list li.cursor { background: rgba(242,242,239,.09); }
+  .phone-list li .nm { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .phone-list li .dl { color: var(--on-ink-mute); font-variant-numeric: tabular-nums; }
+  .phone-empty { margin: 0; padding: 16px 14px; color: var(--on-ink-mute); font-size: 14px; }
   .co-error { margin: 0; color: #FF9A9A; font-size: 14px; }
   .co-submit { width: 100%; padding: 17px 20px; font-size: 12.5px; letter-spacing: .2em; border: 0; cursor: pointer; margin-top: 4px; }
   .co-submit[disabled] { opacity: .6; cursor: progress; }
@@ -959,7 +985,22 @@ fbq('init','747158551764136');fbq('track','PageView');
         </label>
       </div>
       <div class="co-field"><label class="mono" for="co-phone">Phone</label>
-        <div class="co-phone"><select id="co-dial" name="dial" aria-label="Country code"><option value="+33" selected>FR +33</option><option value="+353">IE +353</option><option value="+44">GB +44</option><option value="+1">US +1</option><option value="+49">DE +49</option><option value="+31">NL +31</option><option value="+32">BE +32</option><option value="+34">ES +34</option><option value="+351">PT +351</option><option value="+39">IT +39</option><option value="+41">CH +41</option><option value="+43">AT +43</option><option value="+46">SE +46</option><option value="+45">DK +45</option><option value="+47">NO +47</option><option value="+358">FI +358</option><option value="+48">PL +48</option><option value="+40">RO +40</option><option value="+971">AE +971</option><option value="+27">ZA +27</option><option value="+61">AU +61</option></select><input id="co-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="6 12 34 56 78" maxlength="20" required></div>
+        <div class="phone" data-phone>
+          <button class="phone-cc" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Country calling code">
+            <span class="phone-flag" data-flag aria-hidden="true">🇫🇷</span>
+            <span class="phone-dial" data-dial>+33</span>
+            <svg class="phone-chev" aria-hidden="true"><use href="#chev"/></svg>
+          </button>
+          <input id="co-phone" class="phone-num" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="6 12 34 56 78" maxlength="24" required>
+          <div class="phone-pop" hidden>
+            <input class="phone-search" type="search" placeholder="Search country" aria-label="Search country" autocomplete="off" spellcheck="false">
+            <ul class="phone-list" role="listbox" aria-label="Countries"></ul>
+            <p class="phone-empty" hidden>No match</p>
+          </div>
+        </div>
+        <p class="phone-hint" data-phone-hint aria-live="polite"></p>
+        <input type="hidden" name="phone" data-phone-e164>
+        <input type="hidden" name="phone_country" data-phone-country value="FR">
       </div>
       <p class="co-error" id="co-error" role="alert" hidden></p>
       <button class="pill pill-light co-submit" id="co-submit" type="submit">Continue</button>
@@ -1114,6 +1155,223 @@ fbq('init','747158551764136');fbq('track','PageView');
   })();
 </script>
 
+<script>/*LIBPHONENUMBER*/</script>
+
+<script>
+  /* ------------------------------------------------------------------
+     Phone validation.
+
+     libphonenumber-js gives country-aware validity. That alone is not
+     enough: 212-555-0123 is a perfectly "valid" US number and a fake.
+     So on top of the library we require a national number of at least
+     seven digits, reject all-identical and sequential runs, and block
+     the UK and US ranges reserved for fiction.
+
+     Valid input is normalised to E.164 before it goes anywhere.
+     ------------------------------------------------------------------ */
+  window.APCPhone = (function () {
+    var lib = window.libphonenumber;
+
+    function digitsOnly(v) { return String(v || "").replace(/\D/g, ""); }
+
+    function isAllSame(d) { return /^(\d)\1+$/.test(d); }
+
+    function isSequential(d) {
+      if (d.length < 4) return false;
+      var up = true, down = true;
+      for (var i = 1; i < d.length; i++) {
+        var a = +d[i - 1], b = +d[i];
+        if (b !== (a + 1) % 10) up = false;
+        if (b !== (a + 9) % 10) down = false;
+      }
+      return up || down;
+    }
+
+    // Ranges telecoms reserve for drama and documentation.
+    function isReservedRange(country, nat) {
+      if ((country === "US" || country === "CA") && nat.length === 10) {
+        if (nat.slice(3, 6) === "555" && nat.slice(6, 8) === "01") return true;  // 555-0100..0199
+      }
+      if (country === "GB" && /^7700900\d{3}$/.test(nat)) return true;           // +44 7700 900xxx
+      return false;
+    }
+
+    function checkPhoneNumber(input, country) {
+      var res = { isValid: false, e164: null, reason: null };
+      var raw = String(input == null ? "" : input).trim();
+      if (!raw) { res.reason = "Phone number is required."; return res; }
+      if (!lib) {                                  // library failed to load
+        var d = digitsOnly(raw);
+        res.isValid = d.length >= 7 && !isAllSame(d) && !isSequential(d);
+        res.e164 = res.isValid ? "+" + d : null;
+        if (!res.isValid) res.reason = "Please enter a valid phone number.";
+        return res;
+      }
+
+      var parsed = null;
+      try { parsed = lib.parsePhoneNumberFromString(raw, country); } catch (e) {}
+      if (!parsed) { res.reason = "Please enter a valid phone number."; return res; }
+      if (!parsed.isValid()) { res.reason = "That number isn't valid for the country selected."; return res; }
+
+      var nat = String(parsed.nationalNumber);
+      if (nat.length < 7) { res.reason = "Please enter a full phone number."; return res; }
+      if (isAllSame(nat) || isSequential(nat)) { res.reason = "Please enter a real phone number."; return res; }
+      if (isReservedRange(parsed.country || country, nat)) { res.reason = "That number is a reserved test range."; return res; }
+
+      res.isValid = true;
+      res.e164 = parsed.number;                    // E.164, e.g. +33612345678
+      return res;
+    }
+
+    function flagOf(cc) {
+      try {
+        return String.fromCodePoint.apply(String, cc.split("").map(function (c) {
+          return 0x1F1E6 + c.charCodeAt(0) - 65;
+        }));
+      } catch (e) { return cc; }
+    }
+
+    function countryList() {
+      if (!lib) return [{ cc: "FR", name: "France", dial: "33" }];
+      var names = null;
+      try { names = new Intl.DisplayNames(["en"], { type: "region" }); } catch (e) {}
+      return lib.getCountries().map(function (cc) {
+        var name = cc;
+        try { name = (names && names.of(cc)) || cc; } catch (e) {}
+        return { cc: cc, name: name, dial: lib.getCountryCallingCode(cc) };
+      }).sort(function (a, b) { return a.name.localeCompare(b.name); });
+    }
+
+    function mount(root, opts) {
+      opts = opts || {};
+      var btn = root.querySelector(".phone-cc");
+      var flagEl = root.querySelector("[data-flag]");
+      var dialEl = root.querySelector("[data-dial]");
+      var num = root.querySelector(".phone-num");
+      var pop = root.querySelector(".phone-pop");
+      var search = root.querySelector(".phone-search");
+      var list = root.querySelector(".phone-list");
+      var empty = root.querySelector(".phone-empty");
+      var field = root.parentElement;
+      var hint = field.querySelector("[data-phone-hint]");
+      var e164El = field.querySelector("[data-phone-e164]");
+      var ccEl = field.querySelector("[data-phone-country]");
+
+      var all = countryList();
+      var country = opts.country || "FR";
+      var shown = all, cursor = -1, touched = false, last = { e164: null, isValid: false };
+
+      function setCountry(cc) {
+        country = cc;
+        var c = all.filter(function (x) { return x.cc === cc; })[0];
+        if (!c) return;
+        flagEl.textContent = flagOf(c.cc);
+        dialEl.textContent = "+" + c.dial;
+        if (ccEl) ccEl.value = c.cc;
+      }
+
+      function render() {
+        list.innerHTML = "";
+        shown.forEach(function (c, i) {
+          var li = document.createElement("li");
+          li.setAttribute("role", "option");
+          li.setAttribute("aria-selected", c.cc === country ? "true" : "false");
+          li.dataset.cc = c.cc;
+          if (i === cursor) li.className = "cursor";
+          li.innerHTML = '<span aria-hidden="true">' + flagOf(c.cc) + '</span><span class="nm"></span><span class="dl">+' + c.dial + "</span>";
+          li.querySelector(".nm").textContent = c.name;
+          list.appendChild(li);
+        });
+        empty.hidden = shown.length > 0;
+      }
+
+      function filter(q) {
+        q = (q || "").trim().toLowerCase().replace(/^\+/, "");
+        shown = !q ? all : all.filter(function (c) {
+          return c.name.toLowerCase().indexOf(q) > -1 || c.cc.toLowerCase().indexOf(q) === 0 || c.dial.indexOf(q) === 0;
+        });
+        cursor = shown.length ? 0 : -1;
+        render();
+      }
+
+      function openPop() {
+        filter("");
+        pop.hidden = false;
+        btn.setAttribute("aria-expanded", "true");
+        search.value = "";
+        setTimeout(function () { search.focus(); }, 10);
+        var sel = list.querySelector('[aria-selected="true"]');
+        if (sel) sel.scrollIntoView({ block: "center" });
+      }
+      function closePop() {
+        pop.hidden = true;
+        btn.setAttribute("aria-expanded", "false");
+      }
+
+      function validate(showBad) {
+        var r = checkPhoneNumber(num.value, country);
+        if (e164El) e164El.value = r.isValid ? r.e164 : "";
+        root.classList.toggle("is-valid", r.isValid);
+        // Don't shout at someone three digits into typing.
+        var bad = !r.isValid && (showBad || digitsOnly(num.value).length >= 6);
+        root.classList.toggle("is-invalid", bad);
+        if (hint) {
+          hint.textContent = r.isValid ? "" : (bad ? r.reason : "");
+          hint.className = "phone-hint" + (r.isValid ? "" : bad ? " bad" : "");
+        }
+        if (r.e164 !== last.e164 || r.isValid !== last.isValid) {
+          last = { e164: r.e164, isValid: r.isValid };
+          if (typeof opts.onChange === "function") opts.onChange(r.e164, r.isValid);
+          root.dispatchEvent(new CustomEvent("phone:change", { bubbles: true, detail: { e164: r.e164, isValid: r.isValid } }));
+        }
+        return r;
+      }
+
+      btn.addEventListener("click", function () { pop.hidden ? openPop() : closePop(); });
+      search.addEventListener("input", function () { filter(search.value); });
+      list.addEventListener("click", function (e) {
+        var li = e.target.closest("li[data-cc]");
+        if (!li) return;
+        setCountry(li.dataset.cc);
+        closePop();
+        num.focus();
+        validate(touched);
+      });
+      search.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+          e.preventDefault();
+          if (!shown.length) return;
+          cursor = (cursor + (e.key === "ArrowDown" ? 1 : -1) + shown.length) % shown.length;
+          render();
+          var el = list.children[cursor];
+          if (el) el.scrollIntoView({ block: "nearest" });
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          if (shown[cursor]) { setCountry(shown[cursor].cc); closePop(); num.focus(); validate(touched); }
+        } else if (e.key === "Escape") { e.preventDefault(); closePop(); btn.focus(); }
+      });
+      document.addEventListener("click", function (e) {
+        if (!pop.hidden && !root.contains(e.target)) closePop();
+      });
+
+      num.addEventListener("input", function () { validate(false); });
+      num.addEventListener("blur", function () { touched = true; validate(true); });
+
+      setCountry(country);
+      validate(false);
+
+      return {
+        validate: function () { touched = true; return validate(true); },
+        get value() { return last.e164; },
+        get isValid() { return last.isValid; },
+        focus: function () { num.focus(); }
+      };
+    }
+
+    return { check: checkPhoneNumber, mount: mount };
+  })();
+</script>
+
 <script>
   (function () {
     var CFG = {
@@ -1154,6 +1412,9 @@ fbq('init','747158551764136');fbq('track','PageView');
     var done = document.getElementById("co-done"), note = document.getElementById("co-note");
     var openedAt = 0, lastTrigger = null, busy = false;
 
+    var phoneRoot = form.querySelector("[data-phone]");
+    var phone = phoneRoot && window.APCPhone ? window.APCPhone.mount(phoneRoot, { country: "FR" }) : null;
+
     function trakyoId() {
       try { if (window.trakyo_id) return String(window.trakyo_id).trim(); } catch (e) {}
       try { var c = ("; " + document.cookie).split("; trakyo_id="); if (c.length === 2) { var v = decodeURIComponent(c.pop().split(";").shift()); if (v) return v.trim(); } } catch (e) {}
@@ -1177,21 +1438,51 @@ fbq('init','747158551764136');fbq('track','PageView');
     function capped(promise, ms) {
       return Promise.race([promise.catch(function () {}), new Promise(function (r) { setTimeout(r, ms || 3000); })]);
     }
+    /* ----------------------------------------------------------------
+       gt-event-capture. Fire-and-forget: never awaited, never blocks the
+       redirect. Every key is present on every send, null rather than ""
+       when there is nothing to report. Called exactly once per submit.
+       ---------------------------------------------------------------- */
     function fireEvent(type, d) {
       try {
-        var email = (d.email || "").trim().toLowerCase();
-        if (!email) return;
-        var u = utm(), nn = function (v) { return v ? v : null; }, tid = trakyoId();
-        var body = {
-          event_type: type, firstName: nn(d.firstName), lastName: nn(d.lastName), email: email, phone: nn(d.phone),
-          purchase_city: CFG.city, purchase_tier_name: CFG.tierName, trakyo_id: nn(tid),
-          industry: nn((d.profile || {}).industry), monthly_revenue: nn((d.profile || {}).monthly_revenue),
-          team_size: nn((d.profile || {}).team_size), instagram: (d.profile || {}).instagram || null,
-          utm_source: nn(u.utm_source), utm_medium: nn(u.utm_medium), utm_campaign: nn(u.utm_campaign),
-          utm_content: nn(u.utm_content), utm_term: nn(u.utm_term),
-          page_url: location.href, submitted_at: new Date().toISOString()
+        var nn = function (v) {
+          if (v === undefined || v === null) return null;
+          v = String(v).trim();
+          return v === "" ? null : v;
         };
-        fetch(CFG.events, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(function () {});
+        var email = String(d.email || "").trim().toLowerCase();
+        if (!email) return;
+        var u = utm(), pr = d.profile || {};
+
+        var body = {
+          event_type: type,
+          firstName: nn(d.firstName),
+          lastName: nn(d.lastName),
+          email: email,
+          phone: nn(d.phone),                       // E.164
+          purchase_city: CFG.city,
+          purchase_tier_name: CFG.tierName,
+          trakyo_id: nn(trakyoId()),
+          utm_source: nn(u.utm_source),
+          utm_medium: nn(u.utm_medium),
+          utm_campaign: nn(u.utm_campaign),
+          utm_content: nn(u.utm_content),
+          utm_term: nn(u.utm_term),
+          page_url: location.href,
+          submitted_at: new Date().toISOString(),
+          // Qualification answers captured by the same form.
+          industry: nn(pr.industry),
+          monthly_revenue: nn(pr.monthly_revenue),
+          team_size: nn(pr.team_size),
+          instagram: nn(pr.instagram)
+        };
+
+        fetch(CFG.events, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+          keepalive: true
+        }).catch(function () {});
       } catch (e) {}
     }
 
@@ -1220,20 +1511,6 @@ fbq('init','747158551764136');fbq('track','PageView');
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
     window.addEventListener("pageshow", function (ev) { if (ev.persisted) { busy = false; submit.disabled = false; submit.textContent = CFG.checkout ? "Continue" : "Request my ticket"; } });
 
-    function phoneProblem(raw) {
-      var digits = (raw || "").replace(/[^\d]/g, "").replace(/^0+/, "");
-      if (!digits) return "Phone number is required.";
-      if (digits.length < 7 || digits.length > 14) return "Please enter a valid phone number.";
-      if (/^(\d)\1+$/.test(digits)) return "Please enter a real phone number.";
-      var up = true, down = true;
-      for (var i = 1; i < digits.length; i++) {
-        var a = +digits[i - 1], b = +digits[i];
-        if (b !== (a + 1) % 10) up = false;
-        if (b !== (a + 9) % 10) down = false;
-      }
-      if (up || down) return "Please enter a real phone number.";
-      return null;
-    }
     function fail(msg) { err.textContent = msg; err.hidden = false; }
 
     form.addEventListener("submit", async function (e) {
@@ -1250,41 +1527,41 @@ fbq('init','747158551764136');fbq('track','PageView');
       if (!industry) return fail("Please tell us your industry.");
       if (!revenue) return fail("Please choose your average monthly revenue.");
       if (!teamSize) return fail("Please choose your team size.");
-      var dial = form.dial.value, p = phoneProblem(form.phone.value);
-      if (p) return fail(p);
+      var ph = phone ? phone.validate() : { isValid: false, e164: null, reason: "Phone number is required." };
+      if (!ph.isValid) { if (phone) phone.focus(); return fail(ph.reason || "Please enter a valid phone number."); }
       if (Date.now() - openedAt < 3000) return fail("One moment, then press continue again.");
-      var phone = dial + form.phone.value.replace(/[^\d]/g, "").replace(/^0+/, "");
+      var phoneE164 = ph.e164;                     // already E.164, e.g. +33612345678
       var name = (first + " " + last).trim(), tid = trakyoId(), u = utm();
       busy = true; submit.disabled = true;
       var profile = { industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null };
-      fireEvent("reserve", { firstName: first, lastName: last, email: email, phone: phone, profile: profile });
+      fireEvent("reserve", { firstName: first, lastName: last, email: email, phone: phoneE164, profile: profile });
 
       track("track", "InitiateCheckout", { content_name: CFG.tierName, content_type: "product", currency: "EUR", value: window.__APC_PRICE || 4000 });
       track("track", "Lead");
-      touchpoint({ touchpoint_type: "form_lead", name: name, email: email, phone: phone, action: "checkout_form_submit", entry_type: CFG.tierName, profile: profile });
+      touchpoint({ touchpoint_type: "form_lead", name: name, email: email, phone: phoneE164, action: "checkout_form_submit", entry_type: CFG.tierName, profile: profile });
       submit.textContent = CFG.checkout ? "Taking you to checkout…" : "Sending…";
       try {
         await capped(fetch(CFG.supabase + "/rest/v1/leads", {
           method: "POST", keepalive: true,
           headers: { "Content-Type": "application/json", apikey: CFG.key, Authorization: "Bearer " + CFG.key, Prefer: "return=minimal" },
-          body: JSON.stringify({ name: name, email: email, phone: phone })
+          body: JSON.stringify({ name: name, email: email, phone: phoneE164 })
         }), 4000);
         await capped(fetch(CFG.trakyo, {
           method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email, name: name, phone: phone, trakyo_id: tid, form_name: "Paris Mastermind", city: CFG.city,
+          body: JSON.stringify({ email: email, name: name, phone: phoneE164, trakyo_id: tid, form_name: "Paris Mastermind", city: CFG.city,
             industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null })
         }));
         await capped(fetch(CFG.supabase + "/functions/v1/submit-lead", {
           method: "POST", keepalive: true,
           headers: { "Content-Type": "application/json", apikey: CFG.key, Authorization: "Bearer " + CFG.key },
           body: JSON.stringify({ form: "live_ticket", payload: {
-            firstName: first, lastName: last, email: email, phone: "+" + phone.replace(/[^\d]/g, ""), trakyo_id: tid,
+            firstName: first, lastName: last, email: email, phone: phoneE164, trakyo_id: tid,
             submitted_at: new Date().toISOString(), utm_source: u.utm_source, utm_medium: u.utm_medium, utm_campaign: u.utm_campaign,
             utm_content: u.utm_content, utm_term: u.utm_term, purchase_city: CFG.city, purchase_tier_name: CFG.tierName,
             industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null
           } })
         }));
-        touchpoint({ touchpoint_type: "form_submit", name: name, email: email, phone: phone, action: CFG.checkout ? "whop_redirect" : "await_payment_link", entry_type: CFG.tierName, profile: profile });
+        touchpoint({ touchpoint_type: "form_submit", name: name, email: email, phone: phoneE164, action: CFG.checkout ? "whop_redirect" : "await_payment_link", entry_type: CFG.tierName, profile: profile });
 
         if (CFG.checkout) {
           var q = new URLSearchParams();

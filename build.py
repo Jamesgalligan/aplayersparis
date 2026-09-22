@@ -13,6 +13,8 @@ PAGE = ROOT / "src" / "page.html"
 IMAGE_FILES = [ROOT / "assets" / "images.css", ROOT / "assets" / "people.css"]
 OUT = ROOT / "index.html"
 MARKER = "/*IMAGES*/"
+LIB_MARKER = "/*LIBPHONENUMBER*/"
+LIB = ROOT / "vendor" / "libphonenumber-max.js"
 
 page = PAGE.read_text(encoding="utf-8")
 if MARKER not in page:
@@ -32,7 +34,15 @@ if missing:
     sys.exit("page references images not found in assets/: " + ", ".join(missing))
 
 block = ":root{" + "".join("%s:%s;" % (k, available[k]) for k in used) + "}"
-OUT.write_text(page.replace(MARKER, block), encoding="utf-8")
+out = page.replace(MARKER, block)
+
+if LIB_MARKER in out:
+    if not LIB.exists():
+        sys.exit("missing %s" % LIB)
+    out = out.replace(LIB_MARKER, LIB.read_text(encoding="utf-8"))
+    print("inlined libphonenumber (%.0f KB)" % (LIB.stat().st_size / 1024))
+
+OUT.write_text(out, encoding="utf-8")
 
 unused = sorted(set(available) - set(used))
 print("embedded %d images (%d skipped as unused)" % (len(used), len(unused)))

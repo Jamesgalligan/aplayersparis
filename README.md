@@ -54,6 +54,32 @@ public claim about how many seats have gone, so keep it truthful.
 
 Note this is a static count, not live inventory — it does not read from Whop.
 
+## Phone validation
+
+`window.APCPhone` in `src/page.html` is the whole thing: `check(input, country)`
+returns `{ isValid, e164, reason }`, and `mount(root, opts)` wires up the field.
+
+Validity comes from libphonenumber-js (vendored in `vendor/`, inlined at build
+time), then four anti-fake checks run on top of it:
+
+- national number of at least 7 digits
+- no all-identical runs (1111111111)
+- no sequential runs, ascending or descending (1234567890, 0987654321)
+- no reserved drama ranges: US/CA `555-01xx`, UK `+44 7700 900xxx`
+
+That last one is the reason the heuristics exist at all: `+1 212 555 0123`
+passes libphonenumber's own validity check. Valid input is normalised to
+E.164 before it is sent anywhere.
+
+The field is a searchable selector over all 245 countries (names from
+`Intl.DisplayNames`, flags from regional-indicator codepoints), a 16px input
+so iOS does not zoom on focus, and live green/red states. It exposes the
+`onChange(e164, isValid)` contract both as an option and as a bubbling
+`phone:change` event.
+
+If the library fails to load the field degrades to digits-only checks rather
+than blocking the form.
+
 ## The reserve form
 
 Collects first name, last name, email, industry, average monthly revenue,
@@ -69,10 +95,20 @@ Where the answers go:
 | Destination | Carries the new fields? |
 |---|---|
 | `submit-lead` edge function (`payload`) | yes |
+| `gt-event-capture` (see below) | yes |
 | Trakyo webhook | yes |
 | n8n touchpoint webhook (`profile` object) | yes |
 | n8n `gt-event-capture` webhook | yes |
 | Supabase `leads` table (direct REST insert) | **no** - still name/email/phone only |
+
+`gt-event-capture` follows a fixed contract: fire-and-forget (never awaited,
+never blocks a redirect), fired exactly once per submit, every key present on
+every send, and `null` rather than `""` for anything missing. Phone is E.164.
+
+**`purchase_tier_name` sends "The Paris Mastermind".** The integration spec
+said `"General Admission"`, which is a Dublin tier name; Paris has one tier and
+that is what it is called. If the n8n workflow branches on that string, tell me
+and I will switch it.
 
 The direct `leads` insert is deliberately left alone: posting columns that
 do not exist on that table would fail the request. If you want industry,
