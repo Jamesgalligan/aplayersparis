@@ -102,14 +102,25 @@ Where the answers go:
 | n8n `gt-event-capture` webhook | yes |
 | Supabase `leads` table (direct REST insert) | **no** - still name/email/phone only |
 
-`gt-event-capture` follows a fixed contract: fire-and-forget (never awaited,
-never blocks a redirect), fired exactly once per submit, every key present on
-every send, and `null` rather than `""` for anything missing. Phone is E.164.
+`gt-event-capture` follows a fixed contract, verified by test:
 
-**`purchase_tier_name` sends "The Paris Mastermind".** The integration spec
-said `"General Admission"`, which is a Dublin tier name; Paris has one tier and
-that is what it is called. If the n8n workflow branches on that string, tell me
-and I will switch it.
+- exactly 19 keys, in the order the spec lists them, nothing extra
+- every key present on every send, `null` rather than `""`
+- fire-and-forget, never awaited, so it cannot delay the success message
+- fired once per submit; the submit button locks on entry and only unlocks
+  on a validation failure
+- `purchase_tier_name` is `"Mastermind"`, `phone` is dial code plus number
+  with no spaces, `revenue` and `team_size` are the exact dropdown values
+
+**Attribution is first-touch.** UTMs are captured into `localStorage` by a
+script in `<head>`, per key, and never overwritten. A visitor who arrives on
+an Instagram link and returns later via a paid ad is still credited to
+Instagram. `trakyo_id` resolves `window.trakyo_id` -> `localStorage` -> cookie.
+
+The Trakyo custom-form webhook posts `mode: "no-cors"` with
+`Content-Type: text/plain`, which keeps it a simple request with no preflight,
+carrying only `email`, `name`, `phone`, `trakyo_id` and `form_name`. The
+qualification answers still reach n8n and the `submit-lead` function.
 
 The direct `leads` insert is deliberately left alone: posting columns that
 do not exist on that table would fail the request. If you want industry,

@@ -16,6 +16,22 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Roboto+Mono:wght@400;500&display=swap">
 <script src="https://go.theaplayersclub.com/api/js/latest.js"></script>
 <script>
+  /* First-touch attribution. Runs before anything else on the page so a
+     campaign tag is captured even if a later script fails. Per key, and
+     never overwritten: the first campaign that brought someone here is
+     the one that gets the credit. */
+  (function () {
+    try {
+      var keys = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
+      var qs = new URLSearchParams(location.search);
+      keys.forEach(function (k) {
+        var v = qs.get(k);
+        if (v && !localStorage.getItem(k)) localStorage.setItem(k, v);
+      });
+    } catch (e) {}
+  })();
+</script>
+<script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','747158551764136');fbq('track','PageView');
 </script>
@@ -1390,7 +1406,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       //   https://whop.com/checkout/plan_P1FjwOpo09JN8
       checkout: "",
 
-      tierName: "The Paris Mastermind",
+      tierName: "Mastermind",
       supabase: "https://dbxafbczhrdmruhhcitt.supabase.co",
       key: "sb_publishable_d4TwbbBe9R2ZXFx8ObvIUA__36rfOKi",
       trakyo: "https://app.trakyo.io/api/platforms/custom-form/0dac5cf5-5a10-4f2a-a932-4699a51677da/webhook",
@@ -1399,16 +1415,14 @@ fbq('init','747158551764136');fbq('track','PageView');
     };
     var UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"];
 
-    try {
-      var qs = new URLSearchParams(location.search), found = {}, any = false;
-      UTM_KEYS.forEach(function (k) { var v = qs.get(k); if (v) { found[k] = v; any = true; } });
-      if (any && !sessionStorage.getItem("apc_utm")) { sessionStorage.setItem("apc_utm", JSON.stringify(found)); sessionStorage.setItem("utm_params", JSON.stringify(found)); }
-    } catch (e) {}
     function utm() {
-      var a = {}, b = {};
-      try { a = JSON.parse(sessionStorage.getItem("utm_params") || "{}"); } catch (e) {}
-      try { b = JSON.parse(sessionStorage.getItem("apc_utm") || "{}") || {}; } catch (e) {}
-      var out = {}; UTM_KEYS.forEach(function (k) { out[k] = a[k] || b[k] || ""; }); return out;
+      var out = {};
+      UTM_KEYS.forEach(function (k) {
+        var v = null;
+        try { v = localStorage.getItem(k); } catch (e) {}
+        out[k] = v && String(v).trim() ? String(v).trim() : null;
+      });
+      return out;
     }
 
     var modal = document.getElementById("checkout"), form = document.getElementById("co-form");
@@ -1422,12 +1436,14 @@ fbq('init','747158551764136');fbq('track','PageView');
 
     function trakyoId() {
       try { if (window.trakyo_id) return String(window.trakyo_id).trim(); } catch (e) {}
-      try { var c = ("; " + document.cookie).split("; trakyo_id="); if (c.length === 2) { var v = decodeURIComponent(c.pop().split(";").shift()); if (v) return v.trim(); } } catch (e) {}
-      try { var l = localStorage.getItem("trakyo_id"); if (l) return l.trim(); } catch (e) {}
-      var f = form.querySelector('input[name="trakyo_id"]');
-      if (f && f.value) return f.value.trim();
-      try { return new URLSearchParams(location.search).get("trakyo_id") || ""; } catch (e) { return ""; }
+      try { var l = localStorage.getItem("trakyo_id"); if (l && l.trim()) return l.trim(); } catch (e) {}
+      try {
+        var c = ("; " + document.cookie).split("; trakyo_id=");
+        if (c.length === 2) { var v = decodeURIComponent(c.pop().split(";").shift()); if (v && v.trim()) return v.trim(); }
+      } catch (e) {}
+      return "";
     }
+
     function track() { try { if (window.fbq) window.fbq.apply(window, arguments); } catch (e) {} }
     function touchpoint(p) {
       try {
@@ -1448,6 +1464,11 @@ fbq('init','747158551764136');fbq('track','PageView');
        redirect. Every key is present on every send, null rather than ""
        when there is nothing to report. Called exactly once per submit.
        ---------------------------------------------------------------- */
+    /* ----------------------------------------------------------------
+       gt-event-capture. Fire-and-forget: never awaited, so it cannot hold
+       up the success message. Every key present on every send, null rather
+       than "" when there is nothing to report. Once per submit.
+       ---------------------------------------------------------------- */
     function fireEvent(type, d) {
       try {
         var nn = function (v) {
@@ -1459,34 +1480,31 @@ fbq('init','747158551764136');fbq('track','PageView');
         if (!email) return;
         var u = utm(), pr = d.profile || {};
 
-        var body = {
-          event_type: type,
-          firstName: nn(d.firstName),
-          lastName: nn(d.lastName),
-          email: email,
-          phone: nn(d.phone),                       // E.164
-          purchase_city: CFG.city,
-          purchase_tier_name: CFG.tierName,
-          trakyo_id: nn(trakyoId()),
-          utm_source: nn(u.utm_source),
-          utm_medium: nn(u.utm_medium),
-          utm_campaign: nn(u.utm_campaign),
-          utm_content: nn(u.utm_content),
-          utm_term: nn(u.utm_term),
-          page_url: location.href,
-          submitted_at: new Date().toISOString(),
-          // Qualification answers captured by the same form.
-          industry: nn(pr.industry),
-          monthly_revenue: nn(pr.monthly_revenue),
-          team_size: nn(pr.team_size),
-          instagram: nn(pr.instagram)
-        };
-
         fetch(CFG.events, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-          keepalive: true
+          keepalive: true,
+          body: JSON.stringify({
+            event_type: type,
+            firstName: nn(d.firstName),
+            lastName: nn(d.lastName),
+            email: email,
+            phone: nn(d.phone),                    // dial code + number, no spaces
+            industry: nn(pr.industry),
+            instagram: nn(pr.instagram),
+            revenue: nn(pr.revenue),               // exact dropdown value
+            team_size: nn(pr.team_size),           // exact dropdown value
+            purchase_city: CFG.city,
+            purchase_tier_name: CFG.tierName,
+            trakyo_id: nn(trakyoId()),
+            utm_source: u.utm_source,
+            utm_medium: u.utm_medium,
+            utm_campaign: u.utm_campaign,
+            utm_content: u.utm_content,
+            utm_term: u.utm_term,
+            page_url: window.location.href,
+            submitted_at: new Date().toISOString()
+          })
         }).catch(function () {});
       } catch (e) {}
     }
@@ -1516,11 +1534,12 @@ fbq('init','747158551764136');fbq('track','PageView');
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
     window.addEventListener("pageshow", function (ev) { if (ev.persisted) { busy = false; submit.disabled = false; submit.textContent = CFG.checkout ? "Continue" : "Request my ticket"; } });
 
-    function fail(msg) { err.textContent = msg; err.hidden = false; }
+    function fail(msg) { err.textContent = msg; err.hidden = false; busy = false; submit.disabled = false; }
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
       if (busy) return;
+      busy = true; submit.disabled = true;          // lock immediately, release only on a validation failure
       err.hidden = true;
       if (form.company_website.value.trim() !== "") return;
       var first = form.firstName.value.trim(), last = form.lastName.value.trim(), email = form.email.value.trim();
@@ -1537,8 +1556,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       if (Date.now() - openedAt < 3000) return fail("One moment, then press continue again.");
       var phoneE164 = ph.e164;                     // already E.164, e.g. +33612345678
       var name = (first + " " + last).trim(), tid = trakyoId(), u = utm();
-      busy = true; submit.disabled = true;
-      var profile = { industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null };
+      var profile = { industry: industry, revenue: revenue, team_size: teamSize, instagram: instagram || null };
       fireEvent("reserve", { firstName: first, lastName: last, email: email, phone: phoneE164, profile: profile });
 
       track("track", "InitiateCheckout", { content_name: CFG.tierName, content_type: "product", currency: "EUR", value: window.__APC_PRICE || 4000 });
@@ -1552,9 +1570,9 @@ fbq('init','747158551764136');fbq('track','PageView');
           body: JSON.stringify({ name: name, email: email, phone: phoneE164 })
         }), 4000);
         await capped(fetch(CFG.trakyo, {
-          method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email, name: name, phone: phoneE164, trakyo_id: tid, form_name: "Paris Mastermind", city: CFG.city,
-            industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null })
+          method: "POST", mode: "no-cors", keepalive: true,
+          headers: { "Content-Type": "text/plain" },
+          body: JSON.stringify({ email: email, name: name, phone: phoneE164, trakyo_id: tid, form_name: "Paris Mastermind" })
         }));
         await capped(fetch(CFG.supabase + "/functions/v1/submit-lead", {
           method: "POST", keepalive: true,
@@ -1563,7 +1581,7 @@ fbq('init','747158551764136');fbq('track','PageView');
             firstName: first, lastName: last, email: email, phone: phoneE164, trakyo_id: tid,
             submitted_at: new Date().toISOString(), utm_source: u.utm_source, utm_medium: u.utm_medium, utm_campaign: u.utm_campaign,
             utm_content: u.utm_content, utm_term: u.utm_term, purchase_city: CFG.city, purchase_tier_name: CFG.tierName,
-            industry: industry, monthly_revenue: revenue, team_size: teamSize, instagram: instagram || null
+            industry: industry, revenue: revenue, team_size: teamSize, instagram: instagram || null
           } })
         }));
         touchpoint({ touchpoint_type: "form_submit", name: name, email: email, phone: phoneE164, action: CFG.checkout ? "whop_redirect" : "await_payment_link", entry_type: CFG.tierName, profile: profile });
