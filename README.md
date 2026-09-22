@@ -12,7 +12,8 @@ Adapted from the A Players Dublin build.
 | `assets/images.css` | The 34 embedded photographs, extracted from the Dublin build. Workshop, roundtable, working-session and dinner shots only — gala / black-tie / afterparty imagery is deliberately excluded. |
 | `assets/people.css` | All four advisor portraits, 720px wide and colour-matched. Christian Schuette from aplayersmarbella.com; Marius Bulai and James Galligan cropped and graded from supplied stage photographs. |
 | `build.py` | Inlines the photos into `src/page.html` → `index.html`. Only embeds images the page actually references. |
-| `favicon.svg` | The A Players arch mark. |
+| `favicon.*`, `apple-touch-icon.png`, `icon-*.png` | Real icon set from the A-Players-Logo package. |
+| `assets/logo-horizontal.svg` | The horizontal lockup, source of the inlined nav logo. |
 
 ## Build
 

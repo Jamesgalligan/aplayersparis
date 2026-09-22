@@ -6,8 +6,9 @@
 <meta name="description" content="A three-day AI, Ads &amp; Branding workshop mastermind in Paris, 23–25 October 2026. Fifteen founders, four advisors, one-on-one sessions with each.">
 <meta property="og:title" content="A Players Paris · 23–25 October 2026">
 <meta property="og:description" content="Three days. Four advisors. Fifteen founders. A dedicated private mastermind in Paris.">
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="apple-touch-icon" href="favicon.svg">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#080808">
 <title>A Players Paris</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -87,7 +88,9 @@ fbq('init','747158551764136');fbq('track','PageView');
   .hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: radial-gradient(46% 30% at 50% 58%, rgba(182,190,198,.16) 0%, rgba(182,190,198,0) 72%); }
   .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
   .nav .mono { color: rgba(242,242,239,.78); }
-  @media (max-width: 420px) { .nav .mono { font-size: 10px; letter-spacing: .1em; } }
+  .brand { display: flex; align-items: center; color: var(--on-ink); text-decoration: none; flex: none; }
+  .brandmark { display: block; height: 20px; width: auto; }
+  @media (max-width: 520px) { .brandmark { height: 16px; } }
   .nav-links { display: flex; align-items: center; gap: 28px; }
   .nav-links a:not(.pill) { text-decoration: none; font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: rgba(242,242,239,.7); }
   .nav-links a:not(.pill):hover { color: var(--on-ink); }
@@ -488,7 +491,7 @@ fbq('init','747158551764136');fbq('track','PageView');
 <header class="hero" id="top">
   <div class="wrap">
     <nav class="nav" aria-label="Main">
-      <span class="mono">A Players Club</span>
+      <a class="brand" href="#top" aria-label="A Players"><svg class="brandmark" viewBox="0 0 9823.64 1540" fill="none" role="img" aria-label="A Players" focusable="false"><g transform="translate(0 0)" fill="currentColor"><path d="M0 1540A1890.46 1890.46 0 0 1 793.99 0H1096.47A1890.46 1890.46 0 0 1 1890.46 1540H1474.56A1058.66 1058.66 0 0 0 945.23 623.18A1058.66 1058.66 0 0 0 415.9 1540Z"/><path transform="translate(2631.64 1120)" d="M15 0 353 -688H580L918 0H697L645 -110H277L225 0ZM345 -259H577L515 -399Q511 -408 504.0 -425.5Q497 -443 489.0 -462.5Q481 -482 475.0 -498.5Q469 -515 465 -523H458Q451 -505 441.0 -481.0Q431 -457 422.5 -435.0Q414 -413 407 -399ZM1322 0V-688H1852Q1920 -688 1970.5 -658.0Q2021 -628 2049.5 -575.5Q2078 -523 2078 -454Q2078 -385 2049.0 -331.5Q2020 -278 1969.0 -248.5Q1918 -219 1850 -219H1525V0ZM1525 -370H1794Q1839 -370 1862.5 -391.5Q1886 -413 1886 -453Q1886 -480 1875.0 -498.5Q1864 -517 1844.0 -527.0Q1824 -537 1794 -537H1525ZM2183 0V-688H2386V-164H2828V0ZM2867 0 3205 -688H3432L3770 0H3549L3497 -110H3129L3077 0ZM3197 -259H3429L3367 -399Q3363 -408 3356.0 -425.5Q3349 -443 3341.0 -462.5Q3333 -482 3327.0 -498.5Q3321 -515 3317 -523H3310Q3303 -505 3293.0 -481.0Q3283 -457 3274.5 -435.0Q3266 -413 3259 -399ZM4013 0V-274L3673 -688H3914L4115 -430H4124L4327 -688H4557L4217 -274V0ZM4659 0V-688H5375V-537H4863V-421H5311V-275H4863V-151H5383V0ZM5522 0V-688H6094Q6169 -688 6218.0 -657.0Q6267 -626 6292.0 -575.5Q6317 -525 6317 -465Q6317 -400 6286.0 -346.5Q6255 -293 6193 -262L6333 0H6103L5989 -229H5725V0ZM5725 -379H6027Q6064 -379 6086.0 -401.0Q6108 -423 6108 -460Q6108 -484 6098.0 -501.5Q6088 -519 6070.0 -528.0Q6052 -537 6027 -537H5725ZM6821 12Q6737 12 6664.0 2.0Q6591 -8 6536.0 -33.0Q6481 -58 6450.0 -103.0Q6419 -148 6419 -217Q6419 -219 6419.0 -222.0Q6419 -225 6420 -228H6620Q6619 -224 6618.5 -220.0Q6618 -216 6618 -211Q6618 -180 6641.5 -162.5Q6665 -145 6707.0 -138.0Q6749 -131 6806 -131Q6829 -131 6853.5 -132.5Q6878 -134 6901.0 -137.5Q6924 -141 6942.5 -148.0Q6961 -155 6971.5 -165.5Q6982 -176 6982 -192Q6982 -213 6959.5 -225.5Q6937 -238 6897.5 -245.5Q6858 -253 6809.5 -259.0Q6761 -265 6709.0 -273.5Q6657 -282 6608.0 -296.5Q6559 -311 6520.0 -335.0Q6481 -359 6458.0 -397.0Q6435 -435 6435 -489Q6435 -544 6462.5 -583.5Q6490 -623 6540.0 -649.0Q6590 -675 6658.0 -687.5Q6726 -700 6806 -700Q6888 -700 6954.5 -687.0Q7021 -674 7068.5 -648.5Q7116 -623 7141.5 -584.5Q7167 -546 7167 -494V-480H6970V-488Q6970 -509 6952.0 -525.5Q6934 -542 6899.5 -551.5Q6865 -561 6816 -561Q6757 -561 6719.0 -553.5Q6681 -546 6663.0 -533.5Q6645 -521 6645 -505Q6645 -485 6668.0 -473.5Q6691 -462 6730.0 -455.0Q6769 -448 6817.5 -442.0Q6866 -436 6918.5 -428.0Q6971 -420 7019.5 -406.0Q7068 -392 7107.0 -368.5Q7146 -345 7169.0 -308.5Q7192 -272 7192 -219Q7192 -136 7144.0 -85.0Q7096 -34 7012.5 -11.0Q6929 12 6821 12Z"/></g></svg></a>
       <div class="nav-links">
         <a href="#format">Format</a>
         <a href="#advisors">Advisors</a>

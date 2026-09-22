@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-label="A Players">
-  <rect width="1000" height="1000" rx="220" fill="#080808"/>
-  <path fill="#F2F2EF" d="M100 800A1000 1000 0 0 1 400 100H600A1000 1000 0 0 1 900 800H740A480 480 0 0 0 500 484.31A480 480 0 0 0 260 800Z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64"><rect width="64" height="64" fill="#000000"/><g fill="#FFFFFF"><path d="M8.96 50.43A46.08 46.08 0 0 1 27.39 13.57H36.61A46.08 46.08 0 0 1 55.04 50.43H43.06A22.12 22.12 0 0 0 32 31.28A22.12 22.12 0 0 0 20.94 50.43Z"/></g></svg>
