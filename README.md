@@ -35,8 +35,14 @@ Both the percentage and the amount shown in the capsule and the FAQ derive
 from it, so changing that one number updates every mention and every figure.
 At 25% the member price is EUR 3,000 while early seats last, EUR 3,750 after.
 
-**Whop does not know about this discount** - it needs a 25% promo code set up
-on the plan before members can actually redeem it.
+**Pricing is no longer shown on the page.** The figures still drive the tier
+flag and the Meta pixel value, but nothing renders them. The form captures the
+lead and shows a "we'll be in touch" panel instead of redirecting to Whop, so
+nobody lands on a priced checkout after being told pricing comes later.
+
+To put the price back on the page and restore checkout, set `CFG.checkout` to
+the Whop plan URL (kept in a comment beside it) and re-add the `[data-price]`
+elements. The 25% member discount still needs a matching promo code on Whop.
 
 `sold` is the single number to update as seats go. It drives the progress bar,
 the "% sold" line, the seats-left counts and the tier flag. The first 10 seats

@@ -256,7 +256,11 @@ fbq('init','747158551764136');fbq('track','PageView');
   .tier-head { display: grid; gap: 6px; }
   .tier-name { font-family: var(--sans); font-weight: 700; font-size: 24px; letter-spacing: -.01em; }
   .tier-days { color: var(--steel); }
-  .tier-price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-block: 4px; }
+  .tier-req { display: flex; align-items: center; gap: 11px; margin: -4px 0 0; padding: 13px 16px; border-radius: 14px; background: rgba(182,190,198,.08); box-shadow: inset 0 0 0 1px rgba(182,190,198,.24); color: var(--steel); font-size: 14px; line-height: 1.4; }
+  .tier-req b { font-weight: 700; color: var(--on-ink); }
+  .tier-req::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--steel); }
+  .hero-req { display: inline-flex; align-items: center; gap: 10px; justify-self: center; color: rgba(242,242,239,.62); font-size: 11px; }
+  .hero-req::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--steel-deep); }
   .tier-price b { font-family: var(--serif); font-weight: 400; font-size: clamp(56px, 7vw, 84px); line-height: .9; letter-spacing: -.03em; font-variant-numeric: lining-nums; }
   .tier-price span { color: var(--on-ink-mute); font-size: 14.5px; }
   .tier-price s { color: var(--on-ink-mute); opacity: .55; font-family: var(--serif); font-size: 30px; text-decoration-thickness: 1px; }
@@ -311,7 +315,7 @@ fbq('init','747158551764136');fbq('track','PageView');
   .co-summary { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 14px 16px; margin-bottom: 16px; border-radius: 16px; background: var(--card-2); box-shadow: inset 0 0 0 1px var(--line); }
   .co-summary b { display: block; font-size: 15px; }
   .co-summary small { font-size: 12.5px; color: var(--on-ink-mute); }
-  .co-summary i { font-style: normal; font-family: var(--serif); font-size: 30px; line-height: 1; color: var(--steel); }
+  .co-summary i { font-style: normal; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; color: var(--steel); }
   .co-form { display: grid; gap: 14px; }
   .co-hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); left: -9999px; }
   .co-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -463,7 +467,7 @@ fbq('init','747158551764136');fbq('track','PageView');
         <a href="#format">Format</a>
         <a href="#advisors">Advisors</a>
         <a href="#tickets">Tickets</a>
-        <a class="pill pill-line" href="#tickets">Reserve</a>
+        <a class="pill pill-line" href="#tickets">Get ticket</a>
       </div>
     </nav>
 
@@ -505,7 +509,8 @@ fbq('init','747158551764136');fbq('track','PageView');
 
     <div class="hero-foot">
       <p class="tagline mono">A Players Mastermind · Paris</p>
-      <button class="pill pill-light cta-big" type="button" data-checkout>Reserve my seat</button>
+      <button class="pill pill-light cta-big" type="button" data-checkout>Get ticket</button>
+      <p class="mono hero-req">$50k/month minimum to attend</p>
       <dl class="facts">
         <div><dt class="mono">Dates</dt><dd>Oct 23–25</dd></div>
         <div><dt class="mono">Format</dt><dd class="serif">Workshop-led · three days</dd></div>
@@ -702,7 +707,7 @@ fbq('init','747158551764136');fbq('track','PageView');
 
       <div class="advisors-foot">
         <p>Each advisor leads a roundtable section on Day One, then runs one-on-one sessions through Day Two. Every founder gets set times with all four.</p>
-        <button class="pill pill-line" type="button" data-checkout>Reserve my seat</button>
+        <button class="pill pill-line" type="button" data-checkout>Get ticket</button>
       </div>
     </div>
   </section>
@@ -740,9 +745,9 @@ fbq('init','747158551764136');fbq('track','PageView');
   <section class="section concrete" id="tickets" aria-labelledby="tickets-title">
     <div class="wrap">
       <div class="sec-head">
-        <p class="eyebrow mono">Reserve your seat</p>
+        <p class="eyebrow mono">Get your ticket</p>
         <h2 id="tickets-title" class="sec-title">One room. <em>Fifteen seats.</em></h2>
-        <p class="sec-lede">One ticket covers all three days. Every workshop, every one-on-one and every dinner is included. You cover your flights and your hotel. The first ten seats are €4,000 early bird. The last five are €5,000.</p>
+        <p class="sec-lede">One ticket covers all three days. Every workshop, every one-on-one and every dinner is included. You cover your flights and your hotel. Pricing is shared once you apply.</p>
       </div>
       <div class="tier-solo">
         <article class="tier">
@@ -751,9 +756,8 @@ fbq('init','747158551764136');fbq('track','PageView');
             <h3 class="tier-name">The Paris Mastermind</h3>
             <span class="tier-days mono">Fri 23 + Sat 24 + Sun 25 October</span>
           </div>
-          <div class="tier-price"><b data-price>€4,000</b><span data-price-note>early bird, for the full weekend</span></div>
-          <p class="tier-step" data-step-note><b>7 seats left at the €4,000 early bird price.</b> After that it rises to €5,000.</p>
-          <p class="tier-member">Members receive <span data-member-pct>25%</span> off · <b data-member-price>€3,000</b></p>
+          <p class="tier-req"><span><b>$50k/month minimum.</b> This room is built for established businesses.</span></p>
+          <p class="tier-member">A Players members receive <span data-member-pct>25%</span> off</p>
           <div class="tier-meter"><div class="meter"><i data-meter style="width:0%"></i></div><span class="mono" data-seats-line>20% sold · 12 seats left</span></div>
           <ul>
             <li><svg aria-hidden="true"><use href="#check"/></svg>Day One roundtables, one section with each advisor</li>
@@ -763,7 +767,7 @@ fbq('init','747158551764136');fbq('track','PageView');
             <li><svg aria-hidden="true"><use href="#check"/></svg>The Moulin Rouge dinner experience</li>
             <li><svg aria-hidden="true"><use href="#check"/></svg>A room capped at fifteen founders</li>
           </ul>
-          <button class="pill pill-light btn" type="button" data-checkout>Reserve my seat</button>
+          <button class="pill pill-light btn" type="button" data-checkout>Get ticket</button>
         </article>
       </div>
       <p class="tiers-note mono">Excludes flights and accommodation</p>
@@ -858,11 +862,11 @@ fbq('init','747158551764136');fbq('track','PageView');
         </details>
         <details>
           <summary>Is there a members discount?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>Yes. A Players Club members take <span data-member-pct>25%</span> off whichever price is live, so <span data-price>€4,000</span> becomes <span data-member-price>€3,000</span> while the early seats last. Use your member code at checkout.</p>
+          <p>Yes. A Players Club members take <span data-member-pct>25%</span> off whichever price is live. Mention your membership when you apply and we will apply it.</p>
         </details>
         <details>
           <summary>Why does the price go up?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>The first ten seats are €4,000 early bird. Once those are taken the remaining five are €5,000. It is the same room and the same three days either way. The earlier you commit, the less you pay.</p>
+          <p>The first ten seats go at the early bird price, and it rises for the last five. It is the same room and the same three days either way. The earlier you commit, the less you pay. We share the figure when you apply.</p>
         </details>
         <details>
           <summary>Where does AI fit in?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
@@ -874,7 +878,7 @@ fbq('init','747158551764136');fbq('track','PageView');
         </details>
         <details>
           <summary>Who should attend?<svg aria-hidden="true"><use href="#chev"/></svg></summary>
-          <p>Established entrepreneurs with revenue already coming in, who want three days of direct attention on their business in a room of fifteen.</p>
+          <p>Established entrepreneurs doing $50k/month or more, who want three days of direct attention on their business in a room of fifteen.</p>
         </details>
       </div>
     </div>
@@ -913,7 +917,7 @@ fbq('init','747158551764136');fbq('track','PageView');
     <h2 id="co-title" class="co-title">Reserve your <em>seat.</em></h2>
     <div class="co-summary">
       <div><b>The Paris Mastermind</b><small data-summary-note>All three days · 15 seats</small></div>
-      <i data-price>€4,000</i>
+      <i>$50k/m min</i>
     </div>
     <form class="co-form" id="co-form" novalidate>
       <input type="hidden" name="trakyo_id">
@@ -963,13 +967,13 @@ fbq('init','747158551764136');fbq('track','PageView');
     </form>
     <div class="co-done" id="co-done" hidden>
       <p class="mono" style="color:var(--steel)">You're on the list</p>
-      <p>Thanks — your details are with us. We'll be in touch within 24 hours with your payment link and the details for the weekend.</p>
+      <p>Thanks, your details are with us. We'll be in touch within 24 hours with pricing and the details for the weekend.</p>
       <button class="pill pill-line" type="button" data-co-close>Close</button>
     </div>
   </div>
 </div>
 
-<button class="pill mbar" type="button" data-checkout>Reserve my seat · <span data-price>€4,000</span></button>
+<button class="pill mbar" type="button" data-checkout>Get ticket</button>
 
 <style>/*IMAGES*/</style>
 
@@ -1038,7 +1042,7 @@ fbq('init','747158551764136');fbq('track','PageView');
     if (left === 0) {
       set("[data-price]", eur(PRICING.fullPrice));
       Array.prototype.forEach.call(document.querySelectorAll("[data-checkout]"), function (el) {
-        el.textContent = el.classList.contains("mbar") ? "Join the waitlist" : "Join the waitlist";
+        el.textContent = "Join the waitlist";
       });
     }
 
@@ -1117,7 +1121,11 @@ fbq('init','747158551764136');fbq('track','PageView');
 
       // Paris Whop plan. If this is ever blanked the form still captures
       // the lead and shows the "we'll be in touch" panel instead.
-      checkout: "https://whop.com/checkout/plan_P1FjwOpo09JN8",
+      // Pricing is not shown on the page, so the form captures the lead and
+      // shows the "we'll be in touch" panel rather than dropping people onto
+      // a priced Whop page. Set this back to the plan URL to restore checkout:
+      //   https://whop.com/checkout/plan_P1FjwOpo09JN8
+      checkout: "",
 
       tierName: "The Paris Mastermind",
       supabase: "https://dbxafbczhrdmruhhcitt.supabase.co",
@@ -1187,8 +1195,8 @@ fbq('init','747158551764136');fbq('track','PageView');
       } catch (e) {}
     }
 
-    if (!CFG.checkout && note) note.textContent = "We'll send your payment link within 24 hours.";
-    if (!CFG.checkout && submit) submit.textContent = "Request my seat";
+    if (!CFG.checkout && note) note.textContent = "We'll send pricing and next steps within 24 hours.";
+    if (!CFG.checkout && submit) submit.textContent = "Request my ticket";
 
     function open() {
       err.hidden = true;
@@ -1210,7 +1218,7 @@ fbq('init','747158551764136');fbq('track','PageView');
       if (e.target.closest("[data-co-close]")) close();
     });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) close(); });
-    window.addEventListener("pageshow", function (ev) { if (ev.persisted) { busy = false; submit.disabled = false; submit.textContent = CFG.checkout ? "Continue" : "Request my seat"; } });
+    window.addEventListener("pageshow", function (ev) { if (ev.persisted) { busy = false; submit.disabled = false; submit.textContent = CFG.checkout ? "Continue" : "Request my ticket"; } });
 
     function phoneProblem(raw) {
       var digits = (raw || "").replace(/[^\d]/g, "").replace(/^0+/, "");
@@ -1290,7 +1298,7 @@ fbq('init','747158551764136');fbq('track','PageView');
         }
       } catch (x) {
         fail("Something went wrong. Please try again.");
-        busy = false; submit.disabled = false; submit.textContent = CFG.checkout ? "Continue" : "Request my seat";
+        busy = false; submit.disabled = false; submit.textContent = CFG.checkout ? "Continue" : "Request my ticket";
       }
     });
   })();
