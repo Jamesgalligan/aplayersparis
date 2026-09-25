@@ -31,10 +31,6 @@
     } catch (e) {}
   })();
 </script>
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','747158551764136');fbq('track','PageView');
-</script>
 <style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
@@ -1108,8 +1104,6 @@ fbq('init','747158551764136');fbq('track','PageView');
 
     set("[data-member-pct]", Math.round(PRICING.memberOff * 100) + "%");
     set("[data-member-price]", eur(Math.round(price * (1 - PRICING.memberOff))));
-
-    window.__APC_PRICE = price;
   })();
 </script>
 
@@ -1442,7 +1436,6 @@ fbq('init','747158551764136');fbq('track','PageView');
       return "";
     }
 
-    function track() { try { if (window.fbq) window.fbq.apply(window, arguments); } catch (e) {} }
     function touchpoint(p) {
       try {
         var u = utm(), body = Object.assign({
@@ -1557,8 +1550,6 @@ fbq('init','747158551764136');fbq('track','PageView');
       var profile = { industry: industry, revenue: revenue, team_size: teamSize, instagram: instagram || null };
       fireEvent("reserve", { firstName: first, lastName: last, email: email, phone: phoneE164, profile: profile });
 
-      track("track", "InitiateCheckout", { content_name: CFG.tierName, content_type: "product", currency: "EUR", value: window.__APC_PRICE || 4000 });
-      track("track", "Lead");
       touchpoint({ touchpoint_type: "form_lead", name: name, email: email, phone: phoneE164, action: "checkout_form_submit", entry_type: CFG.tierName, profile: profile });
       submit.textContent = CFG.checkout ? "Taking you to checkout…" : "Sending…";
       try {

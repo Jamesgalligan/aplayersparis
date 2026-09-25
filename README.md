@@ -112,6 +112,11 @@ Where the answers go:
 - `purchase_tier_name` is `"Mastermind"`, `phone` is dial code plus number
   with no spaces, `revenue` and `team_size` are the exact dropdown values
 
+**There is no Meta pixel on this site.** It was removed on 2026-09-25: the
+loader, the `fbq('init')` and PageView, the `track()` wrapper, and the
+InitiateCheckout and Lead events. Paris gets its own pixel separately; do not
+re-add the shared `747158551764136` ID, which belongs to the club and Dublin.
+
 **Attribution is first-touch.** UTMs are captured into `localStorage` by a
 script in `<head>`, per key, and never overwritten. A visitor who arrives on
 an Instagram link and returns later via a paid ad is still credited to
